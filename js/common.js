@@ -183,7 +183,7 @@ function revisarMail(mail){
 }
 
 function crearCuenta(){
-	return !WIP() && revisarPassword(document.getElementsByID('Cpass').value, document.getElementsByID('Cpass2').value) && revisarMail(document.getElementsByID('Cmail').value);
+	return WIP() && revisarPassword(document.getElementsByID('Cpass').value, document.getElementsByID('Cpass2').value) && revisarMail(document.getElementsByID('Cmail').value);
 }
 
 function easter_eggColor(){

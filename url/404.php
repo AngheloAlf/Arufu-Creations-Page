@@ -24,7 +24,7 @@ autoRedirect("404", "index.php");
 							<h2 id="easter_egg3"> No se ha encontrado la pagina que estabas buscando. </h2>
 							<h3 id="easter_egg4"> Presiona aqui para volver a la pagina principal. </h3>
 							<br>
-							<form id="easter_egg5" action="http://alumnos.inf.utfsm.cl/~ancarvaj/" method="post">
+							<form id="easter_egg5" action="<?php echo $hostPage; ?>" method="post">
 								<button type="submit" class="btn btn-primary text-right">Volver</button>
 							</form>
 						</div>

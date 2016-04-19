@@ -2,7 +2,7 @@
 if(isset($_POST["user"]) && isset($_POST["pass"])){
 	require 'arufuDataBase/adb.php';
 	$test = new ADB;
-	$test->connect("http://alumnos.inf.utfsm.cl/~ancarvaj/", "ancarvaj", "Alf95", "url/arufuDataBase/usuarios.adb", true);
+	$test->connect($hostPage, "ancarvaj", "Alf95", "url/arufuDataBase/usuarios.adb", true);
 	$usuario = $test->select("Password, admin", "Username = ".strtolower($_POST['user']))[0];
 	if($usuario[0] == $_POST["pass"]){
 		$_SESSION["logeado"] = true;

@@ -1,7 +1,8 @@
 <?php
 
-include "common.php";
+require "common.php";
 require "mdetect.php";
+require "configPage.php";
 
 $uagent_obj = new uagent_info();
 

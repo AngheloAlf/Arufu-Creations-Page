@@ -1,10 +1,4 @@
 <?php
-$wea = file_put_contents("lawea.txt","la wea weon qlo");
-if(!$wea){
-	echo "que no se puede mierda<br>";}
-else{
-	echo "se pudo";
-}
 if(isset($_POST["Cuser"]) && isset($_POST["Cpass"]) && isset($_POST["Cpass2"]) && isset($_POST["Cmail"])){
 	$error = false;
 	if(!preg_match('/^[a-zA-Z0-9._]+@[a-zA-Z0-9._]+.[a-zA-Z0-9.]+$/', $_POST["Cmail"])){
@@ -20,7 +14,7 @@ if(isset($_POST["Cuser"]) && isset($_POST["Cpass"]) && isset($_POST["Cpass2"]) &
 	if(!$error){
 		require 'arufuDataBase/adb.php';
 		$test = new ADB;
-		$test->connect("http://alumnos.inf.utfsm.cl/~ancarvaj/", "ancarvaj", "Alf95", "url/arufuDataBase/usuarios.adb", true);
+		$test->connect($hostPage, "ancarvaj", "Alf95", "url/arufuDataBase/usuarios.adb", true);
 		$usuario = $test->select("Username", "Username = ".strtolower($_POST['Cuser']));
 		if(count($usuario) != 0){
 			$_SESSION["errorUsuario"] = true;
