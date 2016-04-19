@@ -34,7 +34,7 @@
 							</div>
 							<div id="collapseIniciar" class="panel-collapse in">
 								<div class="panel-body">
-									<form action="?url=logear" method="post">
+									<form action="?url=logear&wip=true" method="post">
 										<h3><p style="text-align: center;">Iniciar Sesión</p></h3>
 										<label>Usuario:</label>
 										<input type="text" required="" class="form-control" id="user" name="user"/>
@@ -65,7 +65,7 @@
 							</div>
 							<div id="collapseCrear" class="panel-collapse collapse">
 								<div class="panel-body">
-									<form action="?url=crearCuenta" <?php if($_SESSION["js"]){ echo 'onsubmit="return crearCuenta()"';} ?> method="post">
+									<form action="?url=crearCuenta&wip=true" <?php if($_SESSION["js"]){ echo 'onsubmit="return crearCuenta()"';} ?> method="post">
 										<h3><p style="text-align: center;">Crear Usuario</p></h3>
 										<label>Usuario:</label>
 										<input type="text" required="" class="form-control" id="Cuser" name="Cuser"/>
