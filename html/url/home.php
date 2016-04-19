@@ -13,7 +13,7 @@
 								<h2><p style="text-align: center;">Bienvenido a Arufu Home Page</p></h2>
 								<p style="text-align: center;">Desplácese por el navegador superior.</p>
 								<?php
-								if(!$_SESSION["logeado"]){
+								if($permiteCuentas && !$_SESSION["logeado"]){
 									?>
 									<p style="text-align: center;">No es necesario tener una cuenta para usar esta pagina.</p>
 									<?php
@@ -25,14 +25,14 @@
 					<br>
 				</div>
 				<?php
-				if((isset($_SESSION["logeado"]) && !$_SESSION["logeado"]) || !isset($_SESSION["logeado"])){
+				if($permiteCuentas && ((isset($_SESSION["logeado"]) && !$_SESSION["logeado"]) || !isset($_SESSION["logeado"]))){
 					?>
 					<div class="col-md-6">
 						<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 90%;padding: 00px;"';} ?> >
 							<div class="panel-heading">
 								<a data-toggle="collapse" href="#collapseIniciar">Iniciar Sesión</a>
 							</div>
-							<div id="collapseIniciar" class="panel-collapse in">
+							<div id="collapseIniciar" class="panel-collapse collapse">
 								<div class="panel-body">
 									<form action="?url=logear&wip=true" method="post">
 										<h3><p style="text-align: center;">Iniciar Sesión</p></h3>

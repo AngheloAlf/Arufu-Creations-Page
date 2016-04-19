@@ -70,7 +70,7 @@ else{
 
 	<body style="background-color:gainsboro">
 		<div class="text-center" style="padding-top:10px">
-			<h1>Arufu Page</h1>
+			<h1>Arufu Creations</h1>
 			<h3>Bienvenido <?php if($_SESSION["logeado"]){ echo $_SESSION["user"];} ?></h3>
 			<?php
 			if(!$_SESSION["js"]){
