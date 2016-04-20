@@ -203,3 +203,9 @@ function easter_eggImage(){
 	document.getElementById("easter_egg4").style.opacity = "0.7";
 	document.getElementById("easter_egg5").style.opacity = "0.7";
 }
+
+function buscarConGoogle(){
+	var q = document.getElementById("q").value;
+	var busq = q.replace(/\s+/," ");
+	window.location = " https://www.google.cl/?gws_rd=ssl#safe=off&q="+busq;
+}

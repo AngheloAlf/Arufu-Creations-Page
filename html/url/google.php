@@ -1,5 +1,5 @@
 <?php
-if(isset($_POST["q"])){
+if(isset($_POST["q"]) && $_POST["boton"] == "google"){
 	redireccionarA("https://www.google.cl/?gws_rd=ssl#safe=off&q=".str_replace(" ", "+", $_POST["q"]));
 }
 ?>
@@ -16,13 +16,25 @@ if(isset($_POST["q"])){
 						</div>
 						<div id="collapseGoogle" class="panel-collapse in">
 							<div class="panel-body">
+							<?php
+							if(!$_SESSION["js"]){
+								?>
 								<form action="" method="post">
-									<input type="text" autofocus="" required="" class="form-control" id="q" name="q" />
+								<?php
+							}
+							?>
+									<input type="text" autofocus="" required="" class="form-control" id="q" name="q" <?php if(isset($_POST["q"])){echo 'value="'.$_POST["q"].'"';;} ?> />
 									<br>
-									<button class="btn btn-primary" id="boton" name="boton" value="google">Buscar con Google</button>
-									<button class="btn btn-warning" id="boton" name="boton" value="arufu"><i>[WIP]</i>Buscar con Arufu <i>[WIP]</i></button>
+									<button class="btn btn-primary" id="boton" name="boton" value="google" onclick="buscarConGoogle()">Buscar con Google</button>
+									<button class="btn btn-warning" id="boton" name="boton" value="arufu" onclick="WIP()"><i>[WIP]</i>Buscar con Arufu <i>[WIP]</i></button>
 									<br>
+							<?php
+							if(!$_SESSION["js"]){
+								?>
 								</form>
+								<?php
+							}
+							?>
 							</div>
 						</div>
 					</div>
