@@ -1,6 +1,12 @@
 <?php
-if(isset($_POST["q"]) && $_POST["boton"] == "google"){
-	redireccionarA("https://www.google.cl/?gws_rd=ssl#safe=off&q=".str_replace(" ", "+", $_POST["q"]));
+if(isset($_POST["q"])){
+	$googlePage = "https://www.google.cl/?gws_rd=ssl#safe=off&q=".str_replace(" ", "+", $_POST["q"]);
+	if($_POST["boton"] == "google"){
+		redireccionarA($googlePage);
+	}
+	elseif($_POST["boton"] == "arufu"){
+		echo file_get_contents($googlePage);
+	}
 }
 ?>
 
@@ -26,7 +32,7 @@ if(isset($_POST["q"]) && $_POST["boton"] == "google"){
 									<input type="text" autofocus="" required="" class="form-control" id="q" name="q" <?php if(isset($_POST["q"])){echo 'value="'.$_POST["q"].'"';;} ?> />
 									<br>
 									<button class="btn btn-primary" id="boton" name="boton" value="google" onclick="buscarConGoogle()">Buscar con Google</button>
-									<button class="btn btn-warning" id="boton" name="boton" value="arufu" onclick="WIP()"><i>[WIP]</i>Buscar con Arufu <i>[WIP]</i></button>
+									<!--<button class="btn btn-warning" id="boton" name="boton" value="arufu" onclick="WIP()"><i>[WIP]</i>Buscar con Arufu <i>[WIP]</i></button>-->
 									<br>
 							<?php
 							if(!$_SESSION["js"]){
