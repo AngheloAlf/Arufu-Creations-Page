@@ -4,13 +4,15 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
 	if(mysqli_connect_error()){
 		//Poner wea de la wea para devolverse
+		$_SESSION["errores"]["internoLogear"] = true;
+		jsAlert("Ha ocurrido un problema interno. Intentelo mas tarde.");
 		die('Error de Conexión ('.mysqli_connect_errno().') '.mysqli_connect_error());
 	}
 	//echo 'Éxito... ' . $dbconn->host_info . "\n";
 	$usuario = strtolower($_POST["user"]);
 	$sql = "SELECT admin FROM usuarios WHERE username = '{$usuario}' AND password = '{$_POST["pass"]}'";
 	$check = $dbconn->query($sql);
-	if($check->num_rows == 1){
+	if($check && $check->num_rows == 1){
 		$_SESSION["logeado"] = true;
 		$_SESSION["user"] = $_POST["user"];
 		$_SESSION["admin"] = $check->fetch_array(MYSQLI_NUM);
