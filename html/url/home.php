@@ -34,7 +34,7 @@
 							</div>
 							<div id="collapseIniciar" class="panel-collapse collapse">
 								<div class="panel-body">
-									<form action="?url=logear&wip=true" method="post">
+									<form action="?url=logear" method="post">
 										<h3><p style="text-align: center;">Iniciar Sesión</p></h3>
 										<label>Usuario:</label>
 										<input type="text" required="" class="form-control" id="user" name="user"/>
@@ -43,10 +43,15 @@
 										<a href="?url=claveOlvidada&wip=true" style="color:#337ab7;">Olvide mi contraseña</a>
 										<br>
 										<?php
-										if(isset($_SESSION["errorLogIn"]) && $_SESSION["errorLogIn"]){
+										if(isset($_SESSION["errores"]["malIngresados"]) && $_SESSION["errores"]["malIngresados"]){
 											echo '<br><p style="color:red">El usuario o la contraseña no coinciden</p>';
-											$_SESSION["errorLogIn"] = false;
+											$_SESSION["errores"]["malIngresados"] = false;
 										}
+										if(isset($_SESSION["errores"]["camposLogear"]) && $_SESSION["errores"]["camposLogear"]){
+											echo '<br><p style="color:red">Rellena todos los campos.</p>';
+											$_SESSION["errores"]["malIngresados"] = false;
+										}
+										
 										?>
 										<br>
 										<button class="btn btn-primary">Iniciar sesión</button>
