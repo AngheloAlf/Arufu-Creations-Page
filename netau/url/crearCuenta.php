@@ -23,10 +23,10 @@ if(isset($_POST["Cuser"]) && isset($_POST["Cpass"]) && isset($_POST["Cpass2"]) &
 		}
 		$usuario = strtolower($_POST["Cuser"]);
 		$mail = strtolower($_POST["Cmail"]);
-		$sql = "SELECT username FROM usuarios WHERE username = '{$usuario}'";
+		$sql = "SELECT username FROM usuarios WHERE LCASE(username) = '{$usuario}'";
 		$check = $dbconn->query($sql);
 		if($check && $check->num_rows == 0){
-			$sql2 = "INSERT INTO usuarios(username, password, mail, admin) VALUES('{$usuario}', '{$_POST["Cpass"]}', '{$mail}', '0')";
+			$sql2 = "INSERT INTO usuarios(username, password, mail, admin) VALUES('{$_POST["Cuser"]}', '{$_POST["Cpass"]}', '{$mail}', '0')";
 			$check2 = $dbconn->query($sql2);
 			if($check2){
 				$_SESSION["errores"]["usuarioCreado"] = true;

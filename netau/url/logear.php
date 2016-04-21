@@ -10,13 +10,13 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 	}
 	//echo 'Éxito... ' . $dbconn->host_info . "\n";
 	$usuario = strtolower($_POST["user"]);
-	$sql = "SELECT admin FROM usuarios WHERE username = '{$usuario}' AND password = '{$_POST["pass"]}'";
+	$sql = "SELECT username, admin FROM usuarios WHERE LCASE(username) = '{$usuario}' AND password = '{$_POST["pass"]}'";
 	$check = $dbconn->query($sql);
 	if($check && $check->num_rows == 1){
 		$_SESSION["logeado"] = true;
-		$_SESSION["user"] = $_POST["user"];
-		$_SESSION["admin"] = $check->fetch_array(MYSQLI_NUM);
-		$_SESSION["admin"] = $_SESSION["admin"][0];
+		$resultado = $check->fetch_array(MYSQLI_NUM);
+		$_SESSION["user"] = $resultado[0];
+		$_SESSION["admin"] = $resultado[1];
 		//print_r($check);
 		//$_SESSION["admin"] = $check[0];
 	}

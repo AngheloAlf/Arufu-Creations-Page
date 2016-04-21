@@ -42,7 +42,7 @@ if(isset($_POST["nota0"])){
 								<label>Ingrese su FAE: </label><i>(Factor Academico Extracurricular)</i>
 								<input type="text" required="" class="form-control" id="FAE" name="FAE" value="<?php echo $_SESSION["FAE"]; ?>"/>
 								<label>Ingrese cuantos ramos ha tomado:</label>
-								<input type="number" required="" <?php if($_SESSION["js"]){ echo 'ontouchend="generarRamos()" onkeyup="generarRamos()" onclick="generarRamos()"';} ?> class="form-control" id="cantRamos" name="cantRamos" value="<?php echo $_SESSION["cantRamos"]; ?>" min="0" max="200" />
+								<input type="number" required="" <?php if($_SESSION["js"]){ echo 'ontouchmove="generarRamos()" ontouchend="generarRamos()" onkeyup="generarRamos()" onclick="generarRamos()"';} ?> class="form-control" id="cantRamos" name="cantRamos" value="<?php echo $_SESSION["cantRamos"]; ?>" min="0" max="200" />
 								<?php
 								if(!$_SESSION["js"]){
 									echo '<br><button class="btn btn-primary">Generar</button>';
