@@ -14,7 +14,7 @@ if(isset($_POST["Cuser"]) && isset($_POST["Cpass"]) && isset($_POST["Cpass2"]) &
 	if(!$error){
 		require 'arufuDataBase/adb.php';
 		$test = new ADB;
-		$test->connect($hostPage, "ancarvaj", "Alf95", "url/arufuDataBase/usuarios.adb", true);
+		$test->connect($hostPage, "ancarvaj", "Alf95", "sv/arufuDataBase/usuarios.adb", true);
 		$usuario = $test->select("Username", "Username = ".strtolower($_POST['Cuser']));
 		if(count($usuario) != 0){
 			$_SESSION["errorUsuario"] = true;
@@ -42,5 +42,5 @@ else{
 	jsAlert("Ingrese todos los campos.");
 	$_SESSION["errorCampos"] = true;
 }
-//redireccionarA("?url=home");
+//redireccionarA("?p=home");
 ?>

@@ -55,7 +55,7 @@ if(isset($_POST["nota0"])){
 					
 					<?php
 					if(!$_SESSION["js"]){
-						echo '<form action="" method="post">';
+						echo '<form action="#resultado" method="post">';
 					}
 					?>
 					<div <?php if(!$_SESSION["js"] && $_SESSION["cantRamos"]=="0"){echo 'hidden=""';} ?> class="panel panel-primary" id="panelRamos" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 80%;padding: 00px;"';}?> >
@@ -93,15 +93,12 @@ if(isset($_POST["nota0"])){
 								<br>
 								<button <?php if($_SESSION["js"]){ echo 'onclick="calcularIndicadores()"';}?> class="btn btn-primary">Calcular prioridad</button>
 								<br>
-								<?php
-								if(isset($prioridad)){
-									echo '<p style="text-align: center">Su prioridad es '.$prioridad.'</p>';
-								}
-								?>
-								<p hidden="" style="text-align: center" id="prioridad"></p>
-								<p hidden="" style="text-align: center" id="RAP"></p>
-								<p hidden="" style="text-align: center" id="LA"></p>
-								<p hidden="" style="text-align: center" id="AA"></p>
+								<div id="resultado">
+									<p <?php if(!isset($prioridad)){echo 'hidden=""';} ?> style="text-align: center" id="prioridad"><?php if(isset($prioridad)){echo "Su prioridad es {$prioridad}" ;}?></p>
+									<p hidden="" style="text-align: center" id="RAP"></p>
+									<p hidden="" style="text-align: center" id="LA"></p>
+									<p hidden="" style="text-align: center" id="AA"></p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -110,7 +107,6 @@ if(isset($_POST["nota0"])){
 						echo '</form>';
 					}
 					?>
-
 				</div>
 			</div>
 		</div>

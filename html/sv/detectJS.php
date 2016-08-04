@@ -6,7 +6,7 @@ function A_detectJS($redireccionar){
 		$_SESSION["togglejs"] = true;
 		?>
 		<noscript>
-			<meta http-equiv="refresh" content="0;URL=?url=noJS&redireccionar=<?php echo $redireccionar; ?>" />
+			<meta http-equiv="refresh" content="0;URL=?sv=noJS&redireccionar=<?php echo $redireccionar; ?>" />
 		</noscript>
 		<?php
 	}
@@ -14,14 +14,14 @@ function A_detectJS($redireccionar){
 		if(!$_SESSION["togglejs"]){
 			?>
 			<script type="text/javascript">
-				window.location = "?url=siJS&redireccionar=<?php echo $redireccionar; ?>"
+				window.location = "?sv=siJS&redireccionar=<?php echo $redireccionar; ?>"
 			</script>
 			<?php
 		}
 		else{
 			?>
 			<noscript>
-				<meta http-equiv="refresh" content="0;URL=?url=noJS&redireccionar=<?php echo $redireccionar; ?>" />
+				<meta http-equiv="refresh" content="0;URL=?sv=noJS&redireccionar=<?php echo $redireccionar; ?>" />
 			</noscript>
 			<?php
 		}

@@ -57,8 +57,9 @@ function logOut(){
 function autoRedirect($nombreActual, $haciaDonde){
 	$urlActual = explode("/",$_SERVER["REQUEST_URI"]);
 	$urlActual = explode(".", end($urlActual));
-	$urlActual = $urlActual[0].".php";
-	if(($urlActual == $nombreActual.'.php') || ($urlActual == $nombreActual)){
+	$urlActualphp = $urlActual[0].".php";
+	$urlActualphtml = $urlActual[0].".phtml";
+	if(($urlActualphp == $nombreActual.'.php') || ($urlActualphp == $nombreActual) || ($urlActualphtml == $nombreActual.'.phtml') || ($urlActualphtml == $nombreActual)){
 		redireccionarA($haciaDonde);
 	}
 }
@@ -140,9 +141,8 @@ function calcularPrioridad($notas, $creditos, $semestres, $cantRamos, $FAE){
 		}
 		$creditosTotales += intval($creditos[$i]);
 	}
-	$wea = floatval($FAE)*100*$notasXcreditos*($creditosAprobados/$creditosTotales)/(14*pow(intval($semestres), 1.06));
-	echo $wea;
-	return $wea;
+	$prioridad = floatval($FAE)*100*$notasXcreditos*($creditosAprobados/$creditosTotales)/(14*pow(intval($semestres), 1.06));
+	return $prioridad;
 }
 
 autoRedirect("common.php", "index.php");

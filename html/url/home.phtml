@@ -34,13 +34,13 @@
 							</div>
 							<div id="collapseIniciar" class="panel-collapse in">
 								<div class="panel-body">
-									<form action="?url=logear" method="post">
+									<form action="?s=logear" method="post">
 										<h3><p style="text-align: center;">Iniciar Sesión</p></h3>
 										<label>Usuario:</label>
 										<input type="text" required="" class="form-control" id="user" name="user"/>
 										<label>Contraseña:</label>
 										<input type="password" required="" class="form-control" id="pass" name="pass"/>
-										<a href="?url=claveOlvidada&wip=true" style="color:#337ab7;">Olvide mi contraseña</a>
+										<a href="?p=claveOlvidada&wip=true" style="color:#337ab7;">Olvide mi contraseña</a>
 										<br>
 										<?php
 										if(isset($_SESSION["errores"]["malIngresados"]) && $_SESSION["errores"]["malIngresados"]){
@@ -73,7 +73,7 @@
 							</div>
 							<div id="collapseCrear" class="panel-collapse in">
 								<div class="panel-body">
-									<form action="?url=crearCuenta" <?php if($_SESSION["js"]){ echo 'onsubmit="return crearCuenta()"';} ?> method="post">
+									<form action="?s=crearCuenta" <?php if($_SESSION["js"]){ echo 'onsubmit="return crearCuenta()"';} ?> method="post">
 										<h3><p style="text-align: center;">Crear Usuario</p></h3>
 										<label>Usuario:</label>
 										<input type="text" required="" class="form-control" id="Cuser" name="Cuser"/>

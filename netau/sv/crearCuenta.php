@@ -48,5 +48,5 @@ else{
 	jsAlert("Rellena todos los campos");
 	$_SESSION["errores"]["camposCrear"] = true;
 }
-redireccionarA("?url=home");
+redireccionarA("?p=home");
 ?>

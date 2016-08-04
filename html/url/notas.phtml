@@ -1,0 +1,154 @@
+<?php
+if(isset($_POST["cantRamos"])){
+	$_SESSION["semestres"] = $_POST["semestres"];
+	$_SESSION["FAE"] = $_POST["FAE"];
+	$_SESSION["cantRamos"] = $_POST["cantRamos"];
+}
+elseif(!isset($_SESSION["cantRamos"])){
+	$_SESSION["semestres"] = 0;
+	$_SESSION["FAE"] = "1";
+	$_SESSION["cantRamos"] = 0;
+}
+
+if(isset($_POST["nota0"])){
+	for($i=0; $i < intval($_SESSION["cantRamos"]); $i++){
+		$_SESSION["notas"][$i] = $_POST["nota$i"];
+		$_SESSION["creditos"][$i] = $_POST["creditos$i"];
+	}
+	$prioridad = calcularPrioridad($_SESSION["notas"], $_SESSION["creditos"], $_SESSION["semestres"], $_SESSION["cantRamos"], $_SESSION["FAE"]);
+}
+?>
+
+<!DOCTYPE html>
+<html>
+	<body style="background-color:gainsboro">
+		<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
+			<div class="row-fluid">
+				<div class="col-md-12">
+					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 90%;padding: 00px;"';} ?> >
+						<div class="panel-heading">
+							<a data-toggle="collapse" href="#collapseNotas">Calculadora de notas</a>
+						</div>
+						<div id="collapseNotas" class="panel-collapse in">
+							<div class="panel-body">
+								<?php
+								if(!$_SESSION["js"]){
+									echo '<form action="" method="post">';
+								}
+								?>
+								<label>Seleccione el ramo:</label>
+								<select required="" class="form-control" id="ramo" name="ramo">
+									<option> </option>
+									<option>INF245 - Arquitectura y organizacion de computadores</option>
+								</select>
+								<label>Seleccione semestre:</label>
+								<select required="" class="form-control" id="ramo" name="ramo">
+									<option> </option>
+									<option>2016-1</option>
+								</select>
+								<br>
+								<label>Seleccione la cantidad de certamenes:</label>
+								<input type="number" required="" <?php if($_SESSION["js"]){ echo 'ontouchmove="generarRamos()" ontouchend="generarRamos()" onkeyup="generarRamos()" onclick="generarRamos()"';} ?> class="form-control" id="cantCertamenes" name="cantCertamenes" value="3" min="1" max="10" />
+								<br>
+								<table>
+									<th>Certamen</th>
+									<th>Nota</th>
+									<?php
+									if($_SESSION["js"]){
+										$total = 10;
+									}
+									else{
+										$total = intval($_SESSION["certamenes"]);
+									}
+									for($i=0; $i < $total; $i++){ 
+										?>
+										<tr <?php if($_SESSION["js"]){ echo 'hidden=""';} echo 'id="certamenes'.$i.'"'; ?> >
+											<td>
+												Certamenes <?php echo $i+1; ?>
+											</td>
+											<td>
+												<input type="text" class="form-control" <?php echo 'id="nota'.$i.'"'; echo 'name="nota'.$i.'"'; ?> value="<?php if(isset($_SESSION["notas"][$i])){echo $_SESSION["notas"][$i];}else{echo'0';} ?>" />
+											</td>
+											<td>
+												<input type="number" class="form-control" <?php echo 'id="creditos'.$i.'"'; echo 'name="creditos'.$i.'"'; ?> value="<?php if(isset($_SESSION["creditos"][$i])){echo $_SESSION["creditos"][$i];}else{echo'0';} ?>"/>
+											</td>
+										</tr>
+										<?php
+									}
+									?>
+								</table>
+								<br>
+								<button class="btn btn-primary">Calcular</button>
+								<?php
+								if(!$_SESSION["js"]){
+									echo '</form>';
+								}
+								?>
+							</div>
+						</div>
+					</div>
+					<br>
+					
+					<?php
+					if(!$_SESSION["js"]){
+						echo '<form action="" method="post">';
+					}
+					?>
+					<div <?php if(!$_SESSION["js"] && $_SESSION["cantRamos"]=="0"){echo 'hidden=""';} ?> class="panel panel-primary" id="panelRamos" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 80%;padding: 00px;"';}?> >
+						<div class="panel-heading">Ingresar ramos</div>
+						<div id="collapseRamos" class="panel-collapse <?php if($_SESSION["js"]){ echo 'collapse';}?> ">
+							<div class="panel-body">
+								<table>
+									<th>Ramo</th>
+									<th>Nota</th>
+									<th>Creditos</th>
+									<?php
+									if($_SESSION["js"]){
+										$total = 200;
+									}
+									else{
+										$total = intval($_SESSION["cantRamos"]);
+									}
+									for($i=0; $i < $total; $i++){ 
+										?>
+										<tr <?php if($_SESSION["js"]){ echo 'hidden=""';} echo 'id="ramo'.$i.'"'; ?> >
+											<td>
+												Ramo <?php echo $i+1; ?>
+											</td>
+											<td>
+												<input type="text" class="form-control" <?php echo 'id="nota'.$i.'"'; echo 'name="nota'.$i.'"'; ?> value="<?php if(isset($_SESSION["notas"][$i])){echo $_SESSION["notas"][$i];}else{echo'0';} ?>" />
+											</td>
+											<td>
+												<input type="number" class="form-control" <?php echo 'id="creditos'.$i.'"'; echo 'name="creditos'.$i.'"'; ?> value="<?php if(isset($_SESSION["creditos"][$i])){echo $_SESSION["creditos"][$i];}else{echo'0';} ?>"/>
+											</td>
+										</tr>
+										<?php
+									}
+									?>
+								</table>
+								<br>
+								<button <?php if($_SESSION["js"]){ echo 'onclick="calcularIndicadores()"';}?> class="btn btn-primary">Calcular prioridad</button>
+								<br>
+								<?php
+								if(isset($prioridad)){
+									echo '<p style="text-align: center">Su prioridad es '.$prioridad.'</p>';
+								}
+								?>
+								<p hidden="" style="text-align: center" id="prioridad"></p>
+								<p hidden="" style="text-align: center" id="RAP"></p>
+								<p hidden="" style="text-align: center" id="LA"></p>
+								<p hidden="" style="text-align: center" id="AA"></p>
+							</div>
+						</div>
+					</div>
+					<?php
+					if(!$_SESSION["js"]){
+						echo '</form>';
+					}
+					?>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST["boton"])){
 	if($_POST["boton"] == "guardar"){
-		if($_POST["js"] == "js"){
+		if(isset($_POST["js"]) && ($_POST["js"] == "js")){
 			$_SESSION["js"] = true;
 		}
 		else{
