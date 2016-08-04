@@ -17,7 +17,6 @@ if(isset($_POST["nota0"])){
 	}
 	$prioridad = calcularPrioridad($_SESSION["notas"], $_SESSION["creditos"], $_SESSION["semestres"], $_SESSION["cantRamos"], $_SESSION["FAE"]);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +38,7 @@ if(isset($_POST["nota0"])){
 								?>
 								<label>Ingrese cuantos semestres lleva en la universidad:</label>
 								<input type="number" required="" class="form-control" id="semestres" name="semestres" value="<?php echo $_SESSION["semestres"]; ?>" min="0"/>
-								<label>Ingrese su FAE: </label><i>(Factor Academico Extracurricular)</i>
+								<label>Ingrese su FAE: </label><i> (Factor Academico Extracurricular)</i>
 								<input type="text" required="" class="form-control" id="FAE" name="FAE" value="<?php echo $_SESSION["FAE"]; ?>"/>
 								<label>Ingrese cuantos ramos ha tomado:</label>
 								<input type="number" required="" <?php if($_SESSION["js"]){ echo 'ontouchmove="generarRamos()" ontouchend="generarRamos()" onkeyup="generarRamos()" onclick="generarRamos()"';} ?> class="form-control" id="cantRamos" name="cantRamos" value="<?php echo $_SESSION["cantRamos"]; ?>" min="0" max="200" />
