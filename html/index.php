@@ -4,7 +4,7 @@ require ('sv/initPage.php');
 include ('url/head.phtml');
 
 if(isset($_GET['s']) && !empty($_GET['s'])){ //Carga scripts
-	$pagina = 'url/'.$_GET['s'].'.php';
+	$pagina = 'sv/'.$_GET['s'].'.php';
 	if(isset($_GET['wip']) && !empty($_GET['wip'])){
 		require ('url/wipPage.phtml');
 	}

@@ -28,8 +28,7 @@ if(isset($_POST["boton"])){
 						<div id="collapseConfig" class="panel-collapse in">
 							<div class="panel-body">
 								<form action="" method="post">
-									<label>Activar JavaScript:</label>
-									<input type="checkbox" id="js" name="js" value="js" <?php if(!isset($_SESSION["togglejs"]) || (isset($_SESSION["togglejs"]) && !$_SESSION["togglejs"])){echo 'disabled=""';} if(isset($_SESSION["js"]) && $_SESSION["js"]){ echo 'checked=""';} ?> />
+									<label> <input type="checkbox" id="js" name="js" value="js" <?php if(!isset($_SESSION["togglejs"]) || (isset($_SESSION["togglejs"]) && !$_SESSION["togglejs"])){echo 'disabled=""';} if(isset($_SESSION["js"]) && $_SESSION["js"]){ echo 'checked=""';} ?> /> Activar JavaScript</label>
 									<?php if(!$_SESSION["togglejs"]){ echo "<br><i>No puede activar esta opción debido a que su navegador no parece soportar JavaScript.</i>";} ?>
 									<br><br>
 									<button class="btn btn-primary" id="boton" name="boton" value="guardar">Guardar cambios</button>

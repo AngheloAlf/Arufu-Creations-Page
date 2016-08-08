@@ -7,7 +7,6 @@ if(llaveEnArreglo('rutDV', $_POST)){
 }
 ?>
 
-<!DOCTYPE html>
 <html>
 	<body style="background-color:gainsboro">
 		<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
@@ -25,7 +24,7 @@ if(llaveEnArreglo('rutDV', $_POST)){
 								}
 								?>
 									<label>Ingrese su rut sin guion:</label>
-									<input type="text" class="form-control" id="rutDV" name="rutDV" value="<?php echo $rutDV; ?>" />
+									<input type="number" class="form-control" id="rutDV" name="rutDV" value="<?php echo $rutDV; ?>" />
 									<br>
 									<button <?php if($_SESSION["js"]){ echo 'onclick="generarDV()"';} ?> class="btn btn-primary">Generar</button>
 									<br>

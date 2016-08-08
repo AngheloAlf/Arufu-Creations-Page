@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 
 require "mdetect.php";
@@ -15,8 +16,8 @@ if(isset($_GET["redireccionar"])){
 }
 else{
 	$redireccionar = "home";
-	if(isset($_GET["url"])){
-		$redireccionar = $_GET["url"];
+	if(isset($_GET["p"])){
+		$redireccionar = $_GET["p"];
 	}
 }
 

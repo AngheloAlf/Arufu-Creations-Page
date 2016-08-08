@@ -209,3 +209,32 @@ function buscarConGoogle(){
 	var busq = q.replace(/\s+/," ");
 	window.location = " https://www.google.cl/?gws_rd=ssl#safe=off&q="+busq;
 }
+
+function generarFibonacci(cantidad){
+	var numerosFibonacci = [];
+	if(cantidad < 0){
+		return -1;
+	}
+	if(cantidad >= 1){
+		numerosFibonacci.push(1);
+	}
+	if(cantidad >= 2){
+		numerosFibonacci.push(1);
+	}
+	var uno, dos, total;
+	for(var i = 3; i <= cantidad; i++){
+		uno = numerosFibonacci[numerosFibonacci.length - 2];
+		dos = numerosFibonacci[numerosFibonacci.length - 1];
+		total = uno + dos;
+		numerosFibonacci.push(total);
+		if(total == Infinity){
+			break;
+		}
+	}
+	return numerosFibonacci;
+}
+
+function ponerFibonacci(){
+	var cantidad = document.getElementById("numFib").value;
+	document.getElementById("fiboGene").innerHTML = generarFibonacci(cantidad);
+}

@@ -1,0 +1,45 @@
+<?php
+$numFib = "1";
+//$DV = "";
+if(llaveEnArreglo('numFib', $_POST)){
+	$numFib = $_POST["numFib"];
+	print_r(generarFibonacci($numFib));
+	//$DV = digitoVerificador($rutDV);
+}
+?>
+
+<html>
+	<body style="background-color:gainsboro">
+		<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
+			<div class="row-fluid">
+				<div class="col-md-12">
+					<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 80%;padding: 00px;"';} ?> >
+						<div class="panel-heading">
+							<a data-toggle="collapse" href="#collapseFibonacci">Generador de Fibonacci</a>
+						</div>
+						<div id="collapseFibonacci" class="panel-collapse in">
+							<div class="panel-body">
+								<?php
+								if(!$_SESSION["js"]){
+									echo '<form action="" method="post">';
+								}
+								?>
+									<label>Ingrese cuantos números de Fibonacci desea generar:</label>
+									<input type="number" class="form-control" id="numFib" name="numFib" min="0" value="<?php echo $numFib; ?>" />
+									<br>
+									<button <?php if($_SESSION["js"]){ echo 'onclick="ponerFibonacci()"';} ?> class="btn btn-primary">Generar</button>
+									<br>
+									<center><p id="fiboGene"><!--<?php if($rutDV){echo "<br>Su rut con digito verificador es $rutDV-$DV";} ?>--></p></center>
+								<?php
+								if(!$_SESSION["js"]){
+									echo '</form>';
+								}
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

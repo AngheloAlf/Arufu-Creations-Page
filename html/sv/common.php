@@ -145,6 +145,29 @@ function calcularPrioridad($notas, $creditos, $semestres, $cantRamos, $FAE){
 	return $prioridad;
 }
 
+function generarFibonacci($cantidad){
+	$numerosFibonacci = array();
+	if($cantidad < 0){
+		return -1;
+	}
+	if($cantidad >= 1){
+		array_push($numerosFibonacci, 1);
+	}
+	if($cantidad >= 2){
+		array_push($numerosFibonacci, 1);
+	}
+	for($i = 3; $i <= $cantidad; $i++){
+		$uno = $numerosFibonacci[count($numerosFibonacci) - 2];
+		$dos = $numerosFibonacci[count($numerosFibonacci) - 1];
+		$total = $uno + $dos;
+		array_push($numerosFibonacci, $total);
+		if($total == INF){
+			break;
+		}
+	}
+	return $numerosFibonacci;
+}
+
 autoRedirect("common.php", "index.php");
 
 ?>
