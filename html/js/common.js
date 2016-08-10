@@ -210,13 +210,18 @@ function buscarConGoogle(){
 	window.location = " https://www.google.cl/?gws_rd=ssl#safe=off&q="+busq;
 }
 
-function generarFibonacci(cantidad){
+function generarFibonacci(cantidad, conCero){
 	var numerosFibonacci = [];
 	if(cantidad < 0){
 		return -1;
 	}
 	if(cantidad >= 1){
-		numerosFibonacci.push(1);
+		if(!conCero){
+			numerosFibonacci.push(1);
+		}
+		else{
+			numerosFibonacci.push(0);
+		}
 	}
 	if(cantidad >= 2){
 		numerosFibonacci.push(1);
@@ -236,5 +241,42 @@ function generarFibonacci(cantidad){
 
 function ponerFibonacci(){
 	var cantidad = document.getElementById("numFib").value;
-	document.getElementById("fiboGene").innerHTML = generarFibonacci(cantidad);
+	var conCero = document.getElementById("conCero").checked;
+	document.getElementById("fiboGene").innerHTML = generarFibonacci(cantidad, conCero);
+}
+
+function generarTablaFibonacci(){
+	//$('#fiboGene').collapse("hide");
+	var cantidad = document.getElementById("numFib").value;
+	var conCero = document.getElementById("conCero").checked;
+	var uno, dos, tres, achetemele;
+	achetemele = "<table><th>Posicion</th><th>Número</th>";
+	if(cantidad < 0){
+		return -1;
+	}
+	if(cantidad >= 1){
+		if(!conCero){
+			uno = 1;
+		}
+		else{
+			uno = 0;
+		}
+		achetemele += "<tr><td>1</td><td>"+uno+"</td></tr>";
+	}
+	if(cantidad >= 2){
+		dos = 1;
+		achetemele += "<tr><td>2</td><td>"+dos+"</td></tr>";
+	}
+	for(var i = 3; i <= cantidad; i++){
+		tres = uno + dos;
+		achetemele += "<tr><td>"+i+"</td><td>"+tres+"</td></tr>";
+		if(tres == Infinity){
+			break;
+		}
+		uno = dos;
+		dos = tres;
+	}
+	achetemele += "</table>";
+	document.getElementById("fiboGene").innerHTML = achetemele;
+	$('#fiboGene').collapse("show");
 }

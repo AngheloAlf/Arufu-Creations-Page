@@ -145,13 +145,18 @@ function calcularPrioridad($notas, $creditos, $semestres, $cantRamos, $FAE){
 	return $prioridad;
 }
 
-function generarFibonacci($cantidad){
+function generarFibonacci($cantidad, $conCero){
 	$numerosFibonacci = array();
 	if($cantidad < 0){
 		return -1;
 	}
 	if($cantidad >= 1){
-		array_push($numerosFibonacci, 1);
+		if(!$conCero){
+			array_push($numerosFibonacci, 1);
+		}
+		else{
+			array_push($numerosFibonacci, 0);
+		}
 	}
 	if($cantidad >= 2){
 		array_push($numerosFibonacci, 1);

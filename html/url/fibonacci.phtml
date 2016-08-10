@@ -1,10 +1,12 @@
 <?php
 $numFib = "1";
-//$DV = "";
-if(llaveEnArreglo('numFib', $_POST)){
+$conCero = false;
+if(isset($_POST['numFib'])){
 	$numFib = $_POST["numFib"];
-	print_r(generarFibonacci($numFib));
-	//$DV = digitoVerificador($rutDV);
+	if(isset($_POST["conCero"])){
+		$conCero = true;
+	}
+	///print_r(generarFibonacci($numFib, $conCero));
 }
 ?>
 
@@ -21,15 +23,53 @@ if(llaveEnArreglo('numFib', $_POST)){
 							<div class="panel-body">
 								<?php
 								if(!$_SESSION["js"]){
-									echo '<form action="" method="post">';
+									echo '<form action="#fiboGene" method="post">';
 								}
 								?>
 									<label>Ingrese cuantos números de Fibonacci desea generar:</label>
 									<input type="number" class="form-control" id="numFib" name="numFib" min="0" value="<?php echo $numFib; ?>" />
+									<label><input type="checkbox" id="conCero" name="conCero" value="true" <?php if($conCero){echo 'checked=""';} ?>/> Empezar desde cero</label>
 									<br>
-									<button <?php if($_SESSION["js"]){ echo 'onclick="ponerFibonacci()"';} ?> class="btn btn-primary">Generar</button>
 									<br>
-									<center><p id="fiboGene"><!--<?php if($rutDV){echo "<br>Su rut con digito verificador es $rutDV-$DV";} ?>--></p></center>
+									<button <?php if($_SESSION["js"]){ echo 'onclick="generarTablaFibonacci()"';} ?> class="btn btn-primary">Generar</button>
+									<br>
+									<br>
+									<div id="fiboGene" class="panel-collapse collapse" style="text-align:center; width: 250px;">
+										<?php
+										if(isset($_POST["numFib"])){
+											?>
+											<table>
+												<th>Posicion</th>
+												<th>Número</th>
+												<?php
+												if($numFib >= 1){
+													if(!$conCero){
+														$uno = 1;
+													}
+													else{
+														$uno = 0;
+													}
+													echo "<tr><td>1</td><td>".$uno."</td></tr>";
+												}
+												if($numFib >= 2){
+													$dos = 1;
+													echo "<tr><td>2</td><td>".$dos."</td></tr>";
+												}
+												for($i = 3; $i <= $numFib; $i++){
+													$tres = $uno + $dos;
+													echo "<tr><td>".$i."</td><td>".$tres."</td></tr>";
+													$uno = $dos;
+													$dos = $tres;
+													if($tres == INF){
+														break;
+													}
+												}
+												?>
+											</table>
+											<?php
+										}
+										?>
+									</div>
 								<?php
 								if(!$_SESSION["js"]){
 									echo '</form>';
