@@ -1,7 +1,7 @@
 ﻿<?php
 require_once("sv/common.php");
 require ('sv/initPage.php');
-include ('url/head.phtml');
+include ('includes/head.phtml');
 
 if(isset($_GET['s']) && !empty($_GET['s'])){ //Carga scripts
 	$pagina = 'sv/'.$_GET['s'].'.php';
@@ -31,7 +31,7 @@ else{
 	require ('url/home.phtml');
 }
 
-include ('url/footer.phtml');
+include ('includes/footer.phtml');
 
 ?>
 

@@ -23,4 +23,8 @@ else{
 
 A_detectJS($redireccionar);
 
+if(!isset($_SESSION["nav"]) || !$_SESSION["js"]){
+	$_SESSION["nav"] = "topnav";
+}
+
 ?>

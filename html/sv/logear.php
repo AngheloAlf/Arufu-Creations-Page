@@ -24,7 +24,6 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 		jsAlert("El usuario y/o la clave ingresada no son correctos.");
 		$_SESSION["errores"]["malIngresados"] = true;
 	}
-
 	$dbconn->close();
 }
 else{

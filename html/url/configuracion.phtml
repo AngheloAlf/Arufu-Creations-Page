@@ -7,9 +7,16 @@ if(isset($_POST["boton"])){
 		else{
 			$_SESSION["js"] = false;
 		}
+		if($_POST["nav"] == "topnav"){
+			$_SESSION["nav"] = "topnav";
+		}
+		elseif($_POST["nav"] == "sidenav"){
+			$_SESSION["nav"] = "sidenav";
+		}
 	}
 	elseif("restablecer" == $_POST["boton"]){
 		unset($_SESSION["js"]);
+		$_SESSION["nav"] = "topnav";
 	}
 	echo '<meta http-equiv="refresh" content="1">';
 }
@@ -29,7 +36,21 @@ if(isset($_POST["boton"])){
 							<div class="panel-body">
 								<form action="" method="post">
 									<label> <input type="checkbox" id="js" name="js" value="js" <?php if(!isset($_SESSION["togglejs"]) || (isset($_SESSION["togglejs"]) && !$_SESSION["togglejs"])){echo 'disabled=""';} if(isset($_SESSION["js"]) && $_SESSION["js"]){ echo 'checked=""';} ?> /> Activar JavaScript</label>
-									<?php if(!$_SESSION["togglejs"]){ echo "<br><i>No puede activar esta opción debido a que su navegador no parece soportar JavaScript.</i>";} ?>
+									<?php if(!$_SESSION["togglejs"]){ echo "<br><i>No puede activar esta opción debido a que su navegador no parece soportar JavaScript.</i><br>";} ?>
+									<br>
+
+									<table class="sin-bordes">
+										<tr>
+											<td class="sin-bordes"><label>Cambiar menu:</label></td>
+											<td class="sin-bordes"><input type="radio" id="nav" name="nav" value="topnav" <?php if($_SESSION["nav"] == "topnav"){echo "checked";} if(!$_SESSION["js"]){echo ' disabled=""';} ?> /> Menu superior</td>
+										</tr>
+										<tr>
+											<td class="sin-bordes"></td>
+											<td class="sin-bordes"><input type="radio" id="nav" name="nav" value="sidenav" <?php if($_SESSION["nav"] == "sidenav"){echo "checked";} if(!$_SESSION["js"]){echo 'disabled=""';} ?> /> Menu lateral</td>
+										</tr>
+									</table>
+									<?php if(!$_SESSION["togglejs"]){ echo "<i>Menu lateral requiere el uso de JS.</i><br>";} ?>
+
 									<br><br>
 									<button class="btn btn-primary" id="boton" name="boton" value="guardar">Guardar cambios</button>
 									<button class="btn btn-danger" id="boton" name="boton" value="restablecer">Restablecer valores por defecto</button>

@@ -26,7 +26,14 @@
 			}
 			?>
 		</div>
-		<?php include 'topnav.phtml'; ?>
+		<?php
+		if($_SESSION["nav"] == "topnav"){
+			include 'topnav.phtml';
+		}
+		elseif($_SESSION["nav"] == "sidenav"){
+			include 'sidenav.phtml';
+		}
+		?>
 		<br>
 	</body>
 

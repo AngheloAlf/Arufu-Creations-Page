@@ -1,3 +1,6 @@
+.sin-bordes{
+	border:0px white;
+}
 table, th, td{
 	border: 1px solid #428bca;
 	padding: 5px;
@@ -7,4 +10,28 @@ th{
 	background-color: #428bca;
 	color: #fff;
 	border-bottom-color: #428bca;
+}
+
+.arufu-sidenav{
+	/*height:100%;
+	width:200px;*/
+	position:absolute !important;
+	z-index:1;
+	overflow:auto;
+	text-decoration:none !important;
+}
+.arufu-sidenav a{
+	padding:4px 2px 4px 16px;
+}
+.arufu-sidenav a:hover,.arufu-sidenav a:focus{
+	background-color:#86b4df;
+}
+.arufu-sidenav a{
+	display:block;
+	transition:.3s;
+}
+
+.arufu-blue{
+	background-color: #2196F3;
+    border-color: #2196F3;
 }

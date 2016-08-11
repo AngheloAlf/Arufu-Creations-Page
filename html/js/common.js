@@ -280,3 +280,28 @@ function generarTablaFibonacci(){
 	document.getElementById("fiboGene").innerHTML = achetemele;
 	$('#fiboGene').collapse("show");
 }
+
+function abrirSidenav(){
+	var sidenav = document.getElementById("sidenav");
+	sidenav.style.display = "block";
+	for(var i = 0; i < sidenav.classList.length; i++){
+		if("mobile" == sidenav.classList[i]){
+			sidenav.style.width = "100%";
+		}
+	}
+
+}
+function cerrarSidenav(){
+	document.getElementById("sidenav").style.display = "none";
+}
+
+function cambioDeTamano(){
+	if($(document).width() >= 992){
+		abrirSidenav();
+	}
+	else{
+		cerrarSidenav();
+	}
+}
+
+window.addEventListener("resize", cambioDeTamano);
