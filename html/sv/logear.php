@@ -19,11 +19,15 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 		$_SESSION["admin"] = $resultado[1];
 
 		$sql2 = "SELECT nav FROM user_config, usuarios WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
-		comandoMySql($sql);
 		$check2 = $dbconn->query($sql2);
 		$nav = $check2->fetch_array(MYSQLI_NUM);
 		$_SESSION["nav"] = $nav[0];
 
+		if($_POST["mantenerSesion"] && isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
+			$caducidad =  time() + (60 * 60 * 24 * 28);
+			$_SESSION["setearCookies"][] = array("user", $_SESSION["user"], $caducidad, "/");
+			$_SESSION["setearCookies"][] = array("admin", $_SESSION["admin"], $caducidad, "/");
+		}
 		//print_r($check);
 		//$_SESSION["admin"] = $check[0];
 	}

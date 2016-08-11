@@ -1,14 +1,15 @@
 ﻿<?php
 require_once("sv/common.php");
+include('sv/useCookies.php');
 require ('sv/initPage.php');
 include ('includes/head.phtml');
 
-if(isset($_GET['s']) && !empty($_GET['s'])){ //Carga scripts
+if(isset($_GET['wip']) && !empty($_GET['wip'])){
+	require ('url/wipPage.phtml');
+}
+elseif(isset($_GET['s']) && !empty($_GET['s'])){ //Carga scripts
 	$pagina = 'sv/'.$_GET['s'].'.php';
-	if(isset($_GET['wip']) && !empty($_GET['wip'])){
-		require ('url/wipPage.phtml');
-	}
-	elseif(file_exists($pagina)){
+	if(file_exists($pagina)){
 		require ($pagina);
 	}
 	else{
@@ -17,10 +18,7 @@ if(isset($_GET['s']) && !empty($_GET['s'])){ //Carga scripts
 }
 elseif(isset($_GET['p']) && !empty($_GET['p'])){ //Carga paginas con front-end
 	$pagina = 'url/'.$_GET['p'].'.phtml';
-	if(isset($_GET['wip']) && !empty($_GET['wip'])){
-		require ('url/wipPage.phtml');
-	}
-	elseif(file_exists($pagina)){
+	if(file_exists($pagina)){
 		require ($pagina);
 	}
 	else{
