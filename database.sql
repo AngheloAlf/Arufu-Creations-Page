@@ -1,30 +1,52 @@
--- phpMyAdmin SQL Dump
--- version 2.11.4
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Apr 21, 2016 at 09:11 AM
--- Server version: 5.1.57
--- PHP Version: 5.2.17
+/*
+Navicat MySQL Data Transfer
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+Source Server         : localhost
+Source Server Version : 50617
+Source Host           : localhost:3306
+Source Database       : arufucreations
 
---
--- Database: `a1858249_AlfPage`
---
+Target Server Type    : MYSQL
+Target Server Version : 50617
+File Encoding         : 65001
 
--- --------------------------------------------------------
+Date: 2016-08-11 10:54:35
+*/
 
---
--- Table structure for table `usuarios`
---
+SET FOREIGN_KEY_CHECKS=0;
 
+-- ----------------------------
+-- Table structure for user_config
+-- ----------------------------
+DROP TABLE IF EXISTS `user_config`;
+CREATE TABLE `user_config` (
+  `id_user` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nav` varchar(15) DEFAULT 'topnav',
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of user_config
+-- ----------------------------
+INSERT INTO `user_config` VALUES ('4', 'sidenav');
+
+-- ----------------------------
+-- Table structure for usuarios
+-- ----------------------------
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(31) COLLATE latin1_general_ci NOT NULL,
   `password` varchar(31) COLLATE latin1_general_ci NOT NULL,
   `mail` varchar(63) COLLATE latin1_general_ci NOT NULL,
   `admin` tinyint(1) NOT NULL,
+  `nombre` varchar(31) COLLATE latin1_general_ci DEFAULT NULL,
+  `apellido` varchar(31) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+-- ----------------------------
+-- Records of usuarios
+-- ----------------------------
+INSERT INTO `usuarios` VALUES ('4', 'Arufu', 'Anghelo95', 'angheloalf95@gmail.com', '1', null, null);

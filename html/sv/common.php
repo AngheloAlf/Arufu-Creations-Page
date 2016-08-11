@@ -173,6 +173,24 @@ function generarFibonacci($cantidad, $conCero){
 	return $numerosFibonacci;
 }
 
+function comandoMySql($sql){
+	require "sv/loginData.php";
+	$retornar = null;
+	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+	if(mysqli_connect_error()){
+		//Poner wea de la wea para devolverse
+		$_SESSION["errores"]["internoLogear"] = true;
+		jsAlert("Ha ocurrido un problema interno. Intentelo mas tarde.");
+		die('Error de Conexión ('.mysqli_connect_errno().') '.mysqli_connect_error());
+	}
+	else{
+		$check = $dbconn->query($sql);
+		$retornar = $check->fetch_array(MYSQLI_NUM);
+	}
+	$dbconn->close();
+	return $retornar;
+}
+
 autoRedirect("common.php", "index.php");
 
 ?>

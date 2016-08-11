@@ -17,6 +17,13 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 		$resultado = $check->fetch_array(MYSQLI_NUM);
 		$_SESSION["user"] = $resultado[0];
 		$_SESSION["admin"] = $resultado[1];
+
+		$sql2 = "SELECT nav FROM user_config, usuarios WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
+		comandoMySql($sql);
+		$check2 = $dbconn->query($sql2);
+		$nav = $check2->fetch_array(MYSQLI_NUM);
+		$_SESSION["nav"] = $nav[0];
+
 		//print_r($check);
 		//$_SESSION["admin"] = $check[0];
 	}

@@ -7,16 +7,26 @@ if(isset($_POST["boton"])){
 		else{
 			$_SESSION["js"] = false;
 		}
-		if($_POST["nav"] == "topnav"){
-			$_SESSION["nav"] = "topnav";
-		}
-		elseif($_POST["nav"] == "sidenav"){
-			$_SESSION["nav"] = "sidenav";
+		if(($_POST["nav"] == "topnav") || ($_POST["nav"] == "sidenav")){
+			if($_POST["nav"] == "topnav"){
+				$_SESSION["nav"] = "topnav";
+			}
+			elseif($_POST["nav"] == "sidenav"){
+				$_SESSION["nav"] = "sidenav";
+			}
+			if($permiteCuentas && $_SESSION["logeado"]){
+				$sql = "UPDATE user_config, usuarios SET nav='{$_SESSION["nav"]}' WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
+				comandoMySql($sql);
+			}
 		}
 	}
 	elseif("restablecer" == $_POST["boton"]){
 		unset($_SESSION["js"]);
 		$_SESSION["nav"] = "topnav";
+		if($permiteCuentas && $_SESSION["logeado"]){
+			$sql = "UPDATE user_config, usuarios SET nav='{$_SESSION["nav"]}' WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
+			comandoMySql($sql);
+		}
 	}
 	echo '<meta http-equiv="refresh" content="1">';
 }
@@ -42,11 +52,11 @@ if(isset($_POST["boton"])){
 									<table class="sin-bordes">
 										<tr>
 											<td class="sin-bordes"><label>Cambiar menu:</label></td>
-											<td class="sin-bordes"><input type="radio" id="nav" name="nav" value="topnav" <?php if($_SESSION["nav"] == "topnav"){echo "checked";} if(!$_SESSION["js"]){echo ' disabled=""';} ?> /> Menu superior</td>
+											<td class="sin-bordes"><input type="radio" id="nav" name="nav" value="topnav" <?php if($_SESSION["nav"] == "topnav"){echo "checked";} if(!isset($_SESSION["js"]) || !$_SESSION["js"]){echo ' disabled=""';} ?> /> Menu superior</td>
 										</tr>
 										<tr>
 											<td class="sin-bordes"></td>
-											<td class="sin-bordes"><input type="radio" id="nav" name="nav" value="sidenav" <?php if($_SESSION["nav"] == "sidenav"){echo "checked";} if(!$_SESSION["js"]){echo 'disabled=""';} ?> /> Menu lateral</td>
+											<td class="sin-bordes"><input type="radio" id="nav" name="nav" value="sidenav" <?php if($_SESSION["nav"] == "sidenav"){echo "checked";} if(!isset($_SESSION["js"]) || !$_SESSION["js"]){echo 'disabled=""';} ?> /> Menu lateral</td>
 										</tr>
 									</table>
 									<?php if(!$_SESSION["togglejs"]){ echo "<i>Menu lateral requiere el uso de JS.</i><br>";} ?>
