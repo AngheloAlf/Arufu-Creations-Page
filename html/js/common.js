@@ -304,4 +304,15 @@ function cambioDeTamano(){
 	}
 }
 
+function revisarClavesOnTheFly(){
+	var pass1 = document.getElementById("Cpass").value;
+	var pass2 = document.getElementById("Cpass2").value;
+	if(pass1 && pass2 && (pass1 != pass2)){
+		$('#passNo').collapse("show");
+	}
+	else{
+		$('#passNo').collapse("hide");
+	}
+}
+
 window.addEventListener("resize", cambioDeTamano);

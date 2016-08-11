@@ -77,46 +77,36 @@
 										<h3><p style="text-align: center;">Crear Usuario</p></h3>
 										<label>Usuario:</label>
 										<input type="text" required="" class="form-control" id="Cuser" name="Cuser"/>
-										<?php
-										if(isset($_SESSION["errores"]["usuarioYaExiste"]) && $_SESSION["errores"]["usuarioYaExiste"]){
-											echo '<br><p style="color:blue;">El usuario ya existe.</p><br>';
-											$_SESSION["errores"]["usuarioYaExiste"] = false;
-										}
-										?>
+										<p id="usuarioYaExiste" style="color:red;" <?php if(!(isset($_SESSION["errores"]["usuarioYaExiste"]) && $_SESSION["errores"]["usuarioYaExiste"])){echo 'class="panel-collapse collapse"';} $_SESSION["errores"]["usuarioYaExiste"] = false;?> >
+											El usuario ya existe.</p>
+										
 										<label>Contraseña:</label>
-										<input type="password" required="" class="form-control" id="Cpass" name="Cpass"/>
+										<input type="password" required="" oninput="revisarClavesOnTheFly()" class="form-control" id="Cpass" name="Cpass"/>
 										<label>Repita contraseña:</label>
-										<input type="password" required="" class="form-control" id="Cpass2" name="Cpass2"/>
-										<p id="passNo" <?php if(!(isset($_SESSION["errores"]["clavesCoincidencia"]) && $_SESSION["errores"]["clavesCoincidencia"])){echo 'hidden="true"';} $_SESSION["errores"]["clavesCoincidencia"] = false; ?> style="color:red;">Las contraseñas no coinciden.</p>
+										<input type="password" required="" oninput="revisarClavesOnTheFly()" class="form-control" id="Cpass2" name="Cpass2"/>
+										<p id="passNo" style="color:red;" <?php if(!(isset($_SESSION["errores"]["clavesCoincidencia"]) && $_SESSION["errores"]["clavesCoincidencia"])){echo 'class="panel-collapse collapse"';} $_SESSION["errores"]["clavesCoincidencia"] = false; ?> >
+											Las contraseñas no coinciden.</p>
+										
 										<label>e-Mail:</label>
 										<input type="email" required="" class="form-control" id="Cmail" name="Cmail"/>
+										<p id="mailCreacion" style="color:red;" <?php if(!(isset($_SESSION["errores"]["mailCreacion"]) && $_SESSION["errores"]["mailCreacion"])){echo 'class="panel-collapse collapse"';}  $_SESSION["errores"]["mailCreacion"] = false; ?> >
+											Ingrese un e-Mail valido.</p>
+
+										<p id="camposCrear" style="color:red;" <?php if(!(isset($_SESSION["errores"]["camposCrear"]) && $_SESSION["errores"]["camposCrear"])){echo 'class="panel-collapse collapse"';} $_SESSION["errores"]["camposCrear"] = false; ?> >
+											Rellene todos los campos.</p>
 										<br>
-										<?php
-										if(isset($_SESSION["errores"]["mailCreacion"]) && $_SESSION["errores"]["mailCreacion"]){
-											echo '<br><p style="color:red;">Ingrese un e-Mail valido</p><br>';
-											$_SESSION["errorMail"] = false;
-										}
-										if(isset($_SESSION["errores"]["mailCreacion"]) && $_SESSION["errores"]["mailCreacion"]){
-											echo '<br><p style="color:red;">Rellene todos los campos</p><br>';
-											$_SESSION["errores"]["camposCrear"] = false;
-										}
-										?>
+
 										<button class="btn btn-primary">Crear cuenta</button>
 										<br>
-										<?php
-										if(isset($_SESSION["errores"]["usuarioCreado"]) && $_SESSION["errores"]["usuarioCreado"]){
-											echo '<br><p style="color:blue;">Usuario creado satisfactoriamente.</p>';
-											$_SESSION["errores"]["usuarioCreado"] = false;
-										}
-										if(isset($_SESSION["errores"]["usuarioNoCreado"]) && $_SESSION["errores"]["usuarioNoCreado"]){
-											echo '<br><p style="color:blue;">Ocurrio un problema creando el usuario.</p>';
-											$_SESSION["errores"]["usuarioNoCreado"] = false;
-										}
-										if(isset($_SESSION["errores"]["internoCreacion"]) && $_SESSION["errores"]["internoCreacion"]){
-											echo '<br><p style="color:red;">Ha ocurrido un problema interno. Intentelo mas tarde.</p>';
-											$_SESSION["errores"]["internoCreacion"] = false;
-										}
-										?>
+										<p id="camposCrear" style="color:red;" <?php if(!(isset($_SESSION["errores"]["usuarioCreado"]) && $_SESSION["errores"]["usuarioCreado"])){echo 'class="panel-collapse collapse"';} $_SESSION["errores"]["usuarioCreado"] = false; ?> >
+											Usuario creado satisfactoriamente.</p>
+
+										<p id="camposCrear" style="color:red;" <?php if(!(isset($_SESSION["errores"]["usuarioNoCreado"]) && $_SESSION["errores"]["usuarioNoCreado"])){echo 'class="panel-collapse collapse"';}  $_SESSION["errores"]["usuarioNoCreado"] = false; ?> >
+											Ocurrio un problema creando el usuario.</p>
+
+										<p id="camposCrear" style="color:red;" <?php if(!(isset($_SESSION["errores"]["internoCreacion"]) && $_SESSION["errores"]["internoCreacion"])){echo 'class="panel-collapse collapse"';}	 $_SESSION["errores"]["internoCreacion"] = false; ?> >
+											Ha ocurrido un problema interno. Intentelo mas tarde.</p>
+										
 									</form>
 								</div>
 							</div>
