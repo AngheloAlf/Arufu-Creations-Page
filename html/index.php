@@ -1,6 +1,5 @@
 ﻿<?php
 require_once("sv/common.php");
-include('sv/useCookies.php');
 require ('sv/initPage.php');
 include ('includes/head.phtml');
 

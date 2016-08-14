@@ -23,10 +23,9 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 		$nav = $check2->fetch_array(MYSQLI_NUM);
 		$_SESSION["nav"] = $nav[0];
 
-		if($_POST["mantenerSesion"] && isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
+		if(isset($_POST["mantenerSesion"]) && isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
 			$caducidad =  time() + (60 * 60 * 24 * 28);
 			$_SESSION["setearCookies"][] = array("user", $_SESSION["user"], $caducidad, "/");
-			$_SESSION["setearCookies"][] = array("admin", $_SESSION["admin"], $caducidad, "/");
 		}
 		//print_r($check);
 		//$_SESSION["admin"] = $check[0];

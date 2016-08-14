@@ -191,6 +191,10 @@ function comandoMySql($sql){
 	return $retornar;
 }
 
+function scriptJS($jsString){
+	echo '<script language="javascript">'.$jsString.';</script>';
+}
+
 autoRedirect("common.php", "index.php");
 
 ?>

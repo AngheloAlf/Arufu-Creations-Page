@@ -40,7 +40,13 @@
 										<input type="text" required="" class="form-control" id="user" name="user"/>
 										<label>Contraseña:</label>
 										<input type="password" required="" class="form-control" id="pass" name="pass"/>
-										<label><input type="checkbox" id="mantenerSesion" name="mantenerSesion" value="true" /> Mantener sesion iniciada</label>
+										<?php
+										if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
+											?>
+											<label><input type="checkbox" id="mantenerSesion" name="mantenerSesion" value="true" /> Mantener sesion iniciada</label>
+											<?php
+										}
+										?>
 										<p style="text-align:right;">
 											<a href="?p=claveOlvidada&wip=true" style="color:#337ab7;">Olvide mi contraseña</a>
 										</p>
