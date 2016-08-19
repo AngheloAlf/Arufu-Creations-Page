@@ -185,7 +185,12 @@ function comandoMySql($sql){
 	}
 	else{
 		$check = $dbconn->query($sql);
-		$retornar = $check->fetch_array(MYSQLI_NUM);
+		if(!is_bool($check)){
+			$retornar = $check->fetch_array(MYSQLI_NUM);
+		}
+		else{
+			$retornar = $check;
+		}
 	}
 	$dbconn->close();
 	return $retornar;
@@ -193,6 +198,64 @@ function comandoMySql($sql){
 
 function scriptJS($jsString){
 	echo '<script language="javascript">'.$jsString.';</script>';
+}
+
+function imprimirNavData($arreglo){
+	foreach($arreglo as $key => $value){
+		if(($value[1] > 0) && (!$_SESSION["logeado"] || ($_SESSION["logeado"] && ($_SESSION["admin"] < $value[1])))){
+			continue;
+		}
+		$navegacion = '<a href="'.$value[0];
+		if($value[1] > 0){
+			$navegacion .= '&wip=';
+			if(!$_SESSION['verWip']){
+				$navegacion .= "true";
+			}
+			else{
+				$navegacion .= "false";
+			}
+			$navegacion .= '">[WIP] ';
+			
+		}
+		else{
+			$navegacion .= '">';
+		}
+		$navegacion .= $key.'</a>';
+		echo $navegacion;
+	}
+}
+
+function desSetearCookie($cookieName, $hostPage){
+	$caducidad = time() - (3600);
+	$_SESSION["setearCookies"][] = array($cookieName, "", $caducidad, $hostPage);
+	/*if(!isset($_SESSION["js"])){
+		$cookieDesabilitar = 'document.cookie = "'.$cookieName.'=; expires=Thu, 01 Jan 1970 00:00:00 UTC";';
+		scriptJS($cookieDesabilitar);
+	}*/
+	if($_SESSION["js"]){
+		$cookieDesabilitar = 'document.cookie = "'.$cookieName.'=; expires=Thu, 01 Jan 1970 00:00:00 UTC";';
+		scriptJS($cookieDesabilitar);
+	}
+}
+
+function setearCookies($arregloDeCookies){
+	foreach($arregloDeCookies as $key => $galleta){
+		setcookie($galleta[0], $galleta[1], $galleta[2], $galleta[3]);
+	}		
+}
+
+function generarCode($idUsuario){
+	$fecha = time();
+	$ipUsuario = $_SERVER['REMOTE_ADDR'];
+	if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])){
+		$ipForward = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	}
+	else{
+		$ipForward = "";
+	}
+	$code = dechex(($fecha*10)/($idUsuario*8));
+	$fecha = date('Y-m-d G:i:s', $fecha);
+	return array($code, $fecha, $ipUsuario, $ipForward);
 }
 
 autoRedirect("common.php", "index.php");

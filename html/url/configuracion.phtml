@@ -7,6 +7,7 @@ if(isset($_POST["boton"])){
 		else{
 			$_SESSION["js"] = false;
 		}
+
 		if(($_POST["nav"] == "topnav") || ($_POST["nav"] == "sidenav")){
 			if($_POST["nav"] == "topnav"){
 				$_SESSION["nav"] = "topnav";
@@ -14,10 +15,20 @@ if(isset($_POST["boton"])){
 			elseif($_POST["nav"] == "sidenav"){
 				$_SESSION["nav"] = "sidenav";
 			}
-			if($permiteCuentas && $_SESSION["logeado"]){
-				$sql = "UPDATE user_config, usuarios SET nav='{$_SESSION["nav"]}' WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
-				comandoMySql($sql);
-			}
+		}
+
+		if(isset($_POST["mostrarWip"]) && ($_POST["mostrarWip"] == "mostrarWip")){
+			$_SESSION['verWip'] = true;
+		}
+		else{
+			$_SESSION['verWip'] = false;
+		}
+
+		if($permiteCuentas && $_SESSION["logeado"]){
+			$verWip = 0;
+			if($_SESSION['verWip']){$verWip = 1;}
+			$sql = "UPDATE user_config, usuarios SET nav='{$_SESSION["nav"]}', verWip='{$verWip}' WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
+			comandoMySql($sql);
 		}
 	}
 	elseif("restablecer" == $_POST["boton"]){
@@ -27,6 +38,7 @@ if(isset($_POST["boton"])){
 			$sql = "UPDATE user_config, usuarios SET nav='{$_SESSION["nav"]}' WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
 			comandoMySql($sql);
 		}
+		$_SESSION['verWip'] = false;
 	}
 	echo '<meta http-equiv="refresh" content="1">';
 }
@@ -45,10 +57,12 @@ if(isset($_POST["boton"])){
 						<div id="collapseConfig" class="panel-collapse in">
 							<div class="panel-body">
 								<form action="" method="post">
+									<!-- des/Activar Js -->
 									<label> <input type="checkbox" id="js" name="js" value="js" <?php if(!isset($_SESSION["togglejs"]) || (isset($_SESSION["togglejs"]) && !$_SESSION["togglejs"])){echo 'disabled=""';} if(isset($_SESSION["js"]) && $_SESSION["js"]){ echo 'checked=""';} ?> /> Activar JavaScript</label>
 									<?php if(!$_SESSION["togglejs"]){ echo "<br><i>No puede activar esta opción debido a que su navegador no parece soportar JavaScript.</i><br>";} ?>
 									<br>
 
+									<!-- Cambiar menu -->
 									<table class="sin-bordes">
 										<tr>
 											<td class="sin-bordes"><label>Cambiar menu:</label></td>
@@ -60,6 +74,16 @@ if(isset($_POST["boton"])){
 										</tr>
 									</table>
 									<?php if(!$_SESSION["togglejs"]){ echo "<i>Menu lateral requiere el uso de JS.</i><br>";} ?>
+
+									<!-- Ver paginas en wip (solo admin) -->
+									<?php
+									if($_SESSION["logeado"] && ($_SESSION["admin"] > 0)){
+										?>
+										<label> <input type="checkbox" id="mostrarWip" name="mostrarWip" value="mostrarWip" <?php if(isset($_SESSION['verWip']) && $_SESSION['verWip']){ echo 'checked=""';} ?> /> Ver paginas WIP </label>
+										<?php
+									}
+									?>
+
 
 									<br><br>
 									<button class="btn btn-primary" id="boton" name="boton" value="guardar">Guardar cambios</button>

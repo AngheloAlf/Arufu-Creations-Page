@@ -1,14 +1,8 @@
 <nav id="sidenav" <?php echo 'class="panel arufu-sidenav w3-collapse w3-blue w3-card-2'; if(esMobil($uagent_obj)){echo ' mobile" style="width:100%;display:none;"';} else{echo '"';} ?> >
   	<a href="javascript:void(0)" onclick="cerrarSidenav()" class="w3-closenav w3-large w3-hide-large">Close &times;</a>
-	<a href="?p=home">
-		<img src="resources/home-white.png" width="32" height="38" alt="Home" style="border:0;">
-	</a>
-	<a href="?p=verificador">Digito verificador</a>
-	<a href="?p=prioridad">Calculadora de prioridad</a>
-	<a href="?p=notas&wip=true">Calculadoras de notas</a>
-	<a href="?p=fibonacci">Fibonacci</a>
-	<a href="?p=google">Google search</a>
-	<a href="?p=configuracion">Configuración</a>
+  	<?php
+	imprimirNavData($navData);
+	?>
 </nav>
 
 <div class=" container-fluid ">
