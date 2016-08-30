@@ -1,0 +1,144 @@
+<?php
+if(!$permiteCuentas){
+	require "404.phtml";
+}
+else{
+	if(isset($_POST) && $_POST){
+		if($_POST["boton"] == "ingresarDeuda"){
+			$fecha = obtenerFechaHora();
+			$motivo = $_POST['motivo'];
+			if($_POST['motivo'] == 'otro'){
+				$motivo = $_POST['otro'];
+			}
+			foreach($_POST["personas"] as $key => $value){
+
+				$sql = "INSERT INTO registro_deudas(id_user, id_deudor, fecha, fecha_vencimiento, motivo, descripcion, monto) VALUES ('{$_SESSION['userData']['id']}', '{$value}', '{$fecha}', '{$_POST['vencimiento']}', '{$motivo}', '{$_POST['descripcion']}', '{$_POST['monto']}')";
+				comandoMySql($sql);
+			}
+			jsAlert("Deudas ingresadas correctamente.");
+		}
+		elseif($_POST["boton"] == "pagarDeuda"){
+			require "sv/loginData.php";
+			$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+
+			$monto = floatval($_POST['monto']);
+			if(mysqli_connect_error()){
+				jsAlert("Ha ocurrido un problema interno. Intentelo mas tarde.");
+			}
+			else{
+				$sql = "SELECT id_deuda, monto, monto_abonado FROM registro_deudas WHERE id_deudor='{$_POST['persona']}' AND monto_abonado<monto";
+				$check = $dbconn->query($sql);
+				$arreglo = $check->fetch_all(MYSQLI_NUM);
+
+				for($i=0; $i < count($arreglo); $i++){ 
+					//$arreglo[$i];
+					$deuda = floatval($arreglo[$i][1]);
+					$abonado = floatval($arreglo[$i][2]);
+					if($monto <= 0){
+						if($monto < 0){
+							jsAlert("Error con el monto");
+						}
+						break;
+					}
+					$deudaReal = $deuda - $abonado;
+					if($deudaReal > $monto){
+						$abonamiento = $monto + $abonado;
+					}
+					else{
+						$abonamiento = $deuda;
+					}
+					$sql2 = "UPDATE registro_deudas SET monto_abonado='{$abonamiento}' WHERE id_deuda='{$arreglo[$i][0]}'";
+					$dbconn->query($sql2);
+					$monto -= $abonamiento;
+				}
+				jsAlert("Abonado correctamente.");
+			}
+		}
+	}
+	?>
+	<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
+		<div class="row-fluid">
+			<div class="col-md-6">
+				<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 90%;padding: 00px;"';} ?> >
+					<div class="panel-heading">
+						<a data-toggle="collapse" href="#collapseFormulario">Agregar deudas</a>
+					</div>
+					<div id="collapseFormulario" class="panel-collapse in">
+						<div class="panel-body">
+							<form action="" method="post">
+								<label>Personas: *</label>
+								<select class="form-control" name="personas[]" id="personas[]" required multiple>
+									<?php
+									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores";
+									$personas = comandoMySql($sql);
+									for($i=0; $i < count($personas); $i++){
+										echo '<option value="'.$personas[$i][0].'">'.$personas[$i][1];
+										if($personas[$i][2]){
+											echo ' - '.$personas[$i][2];
+										}
+										echo '</option>';
+									}
+									?>
+								</select>
+								<label>Monto: *</label>
+								<input type="text" required class="form-control" id="monto" name="monto" placeholder="$" />
+								<label>Fecha vencimiento: *</label>
+								<input type="date" required class="form-control" id="vencimiento" name="vencimiento" />
+								<label>Motivo: *</label><br>
+								<input type="radio" required id="motivo" name="motivo" value="agua" /> Agua <br>
+								<input type="radio" required id="motivo" name="motivo" value="gas" /> Gas <br>
+								<input type="radio" required id="motivo" name="motivo" value="luz" /> Luz <br>
+								<input type="radio" required id="motivo" name="motivo" value="internet" /> Internet <br>
+								<input type="radio" required id="motivo" name="motivo" value="natura" /> Natura <br>
+								<input type="radio" required id="motivo" name="motivo" value="otro" /> Otro
+								<input type="text" class="form-control" id="otro" name="otro" />
+								<label>Descripción:</label>
+								<input type="text" class="form-control" id="descripcion" name="descripcion" />
+								<br>
+								<button class="btn btn-primary" id="boton" name="boton" value="ingresarDeuda">Ingresar deudas</button>
+								<br>
+							</form>
+						</div>
+					</div>
+				</div>
+				<br>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 90%;padding: 00px;"';} ?> >
+					<div class="panel-heading">
+						<a data-toggle="collapse" href="#collapseAbonar">Abonar deudas</a>
+					</div>
+					<div id="collapseAbonar" class="panel-collapse in">
+						<div class="panel-body">
+							<form action="" method="post">
+								<label>Persona:</label>
+								<select class="form-control" name="persona" id="persona" required>
+									<?php
+									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores";
+									$personas = comandoMySql($sql);
+									for($i=0; $i < count($personas); $i++){
+										echo '<option value="'.$personas[$i][0].'">'.$personas[$i][1];
+										if($personas[$i][2]){
+											echo ' - '.$personas[$i][2];
+										}
+										echo '</option>';
+									}
+									?>
+								</select>
+								<label>Monto que abona:</label>
+								<input type="text" required class="form-control" id="monto" name="monto" placeholder="$" />
+								<br>
+								<button class="btn btn-primary" id="boton" name="boton" value="pagarDeuda">Abonar deuda</button>
+								<br>
+							</form>
+						</div>
+					</div>
+				</div>
+				<br>
+			</div>
+			<br>
+		</div>
+	</div>
+	<?php
+}
+?>
