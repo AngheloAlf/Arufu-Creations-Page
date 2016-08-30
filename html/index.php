@@ -15,7 +15,7 @@ elseif(isset($_GET['s']) && !empty($_GET['s'])){ //Carga scripts
 	if(file_exists($pagina)){
 		require ($pagina);
 	}
-	else{
+	elseif(!(isset($_GET['wip']) && ($_GET['wip'] == 'false'))){
 		require ('url/404.phtml');
 	}
 }
@@ -28,7 +28,7 @@ elseif(isset($_GET['p']) && !empty($_GET['p'])){ //Carga paginas con front-end
 	if(file_exists($pagina)){
 		require ($pagina);
 	}
-	else{
+	elseif(!(isset($_GET['wip']) && ($_GET['wip'] == 'false'))){
 		require ('url/404.phtml');
 	}
 }

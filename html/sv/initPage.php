@@ -52,10 +52,10 @@ if(!isset($_SESSION["nav"]) || !$_SESSION["js"]){
 }
 
 if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
-	if(!$_SESSION["logeado"] && isset($_COOKIE["iduser"]) && isset($_COOKIE["usercode"])){
+	if($permiteCuentas && !$_SESSION["logeado"] && isset($_COOKIE["iduser"]) && isset($_COOKIE["usercode"])){
 		//poner regex;
 		$sql = "SELECT username, admin, nav, code, verWip FROM user_config, usuarios, user_logs_register WHERE usuarios.id_user='{$_COOKIE["iduser"]}' AND user_config.id_user=usuarios.id_user AND user_logs_register.id_user = usuarios.id_user ORDER BY fecha DESC LIMIT 1";
-		$logeandoCookies = comandoMySql($sql);
+		$logeandoCookies = comandoMySql($sql)[0];
 		if($_COOKIE["usercode"] == $logeandoCookies[3]){
 			$codeData = generarCode($_COOKIE["iduser"]);
 
@@ -85,15 +85,16 @@ if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
 }
 
 $navData = array(
-	'<img src="resources/home-white.png" width="32" height="38" alt="Home" style="border:0;">' => array("?p=home", 0), 
-	'Digito verificador' => array("?p=verificador", 0), 
-	'Calculadora de prioridad' => array("?p=prioridad", 0), 
-	'Calculadoras de notas' => array("?p=notas", 1), 
-	'Fibonacci' => array("?p=fibonacci", 0), 
-	'Google' => array("?p=google", 0), 
-	'Facebook' => array("?p=facebook", 2), 
-	'Configuración' => array('?p=configuracion', 0), 
-	'Acerca de' => array("?p=acercade", 1)
+	'<img src="resources/home-white.png" width="32" height="38" alt="Home" style="border:0;">' => array("?p=home", 0, 0), 
+	'Digito verificador' => array("?p=verificador", 0, 0), 
+	'Calculadora de prioridad' => array("?p=prioridad", 0, 0), 
+	'Calculadoras de notas' => array("?p=notas", 1, 1), 
+	'Fibonacci' => array("?p=fibonacci", 0, 0), 
+	'Google' => array("?p=google", 0, 0), 
+	'Facebook' => array("?p=facebook", 2, 0), 
+	'Configuración' => array('?p=configuracion', 0, 0), 
+	'Acerca de' => array("?p=acercade", 1, 1), 
+	'Deudas' => array("?p=deudas", 3, 1)
 );
 
 if(!isset($_SESSION['verWip'])){

@@ -19,6 +19,9 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 		$_SESSION["admin"] = $resultado[2];
 		$_SESSION["nav"] = $resultado[3];
 		$_SESSION['verWip'] = ($resultado[4] == 1);
+		$verWip = ($resultado[4] == 1);
+
+		$_SESSION["userData"] = array('id' => $resultado[0], 'user' => $resultado[1], "admin" => $resultado[2], "nav" => $resultado[3], 'verWip' => $verWip);
 
 		$codeData = generarCode($resultado[0]);
 

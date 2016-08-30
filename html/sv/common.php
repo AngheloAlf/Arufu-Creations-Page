@@ -29,11 +29,11 @@ function obtenerMes(){
 }
 function obtenerDia(){
 	return date('d', __getDateNTP());
-}
+}*/
 function obtenerFechaHora(){
-	return date('Y-m-d G:i:s', __getDateNTP());
+	//return date('Y-m-d G:i:s', __getDateNTP());
 	return date('Y-m-d G:i:s');
-}
+}/*
 function convertirFechaUsuario($fecha){
 	$entradaExplotada = explode(" ", $fecha);
 	$fechaExplotada = explode("-", $entradaExplotada[0]);
@@ -178,20 +178,18 @@ function comandoMySql($sql){
 	$retornar = null;
 	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
 	if(mysqli_connect_error()){
-		//Poner wea de la wea para devolverse
-		$_SESSION["errores"]["internoLogear"] = true;
 		jsAlert("Ha ocurrido un problema interno. Intentelo mas tarde.");
-		die('Error de Conexión ('.mysqli_connect_errno().') '.mysqli_connect_error());
 	}
 	else{
 		$check = $dbconn->query($sql);
 		if(!is_bool($check)){
-			$retornar = $check->fetch_array(MYSQLI_NUM);
+			$retornar = $check->fetch_all(MYSQLI_NUM);
 		}
 		else{
 			$retornar = $check;
 		}
 	}
+	echo $dbconn->error;
 	$dbconn->close();
 	return $retornar;
 }

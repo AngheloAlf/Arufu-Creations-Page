@@ -29,6 +29,11 @@ if(isset($_POST["Cuser"]) && isset($_POST["Cpass"]) && isset($_POST["Cpass2"]) &
 			$sql2 = "INSERT INTO usuarios(username, password, mail, admin) VALUES('{$_POST["Cuser"]}', '{$_POST["Cpass"]}', '{$mail}', '0')";
 			$check2 = $dbconn->query($sql2);
 			if($check2){
+				$sql3 = "SELECT id_user FROM usuarios WHERE username='{$_POST["Cuser"]}'";
+				$check3 = $dbconn->query($sql3);
+				$id_user = $check3->fetch_array(MYSQLI_NUM);
+				$sql4 = "INSERT INTO user_config(id_user) VALUES ('{$id_user[0]}')";
+				$check4 = $dbconn->query($sql4);
 				$_SESSION["errores"]["usuarioCreado"] = true;
 				jsAlert("Usuario creado satisfactoriamente");
 			}
