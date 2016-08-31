@@ -1,13 +1,19 @@
 <?php
 
-require "configPage.php";
 require "mdetect.php";
 require "detectJS.php";
 
 $uagent_obj = new uagent_info();
 
+// Cargar archivos json
+$navData = cargarJson('navData');
+$_SESSION['configPage'] = cargarJson('configPage');
+
+
+//print_r(cargarJson('loginData'));
+
 if(count($_COOKIE) == 0){
-	setcookie("testCookie", "testCookie",  time() + (60 * 60), $hostPage);
+	setcookie("testCookie", "testCookie",  time() + (60 * 60), $_SESSION['configPage']['hostPage']);
 }
 
 if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
@@ -52,7 +58,7 @@ if(!isset($_SESSION["nav"]) || !$_SESSION["js"]){
 }
 
 if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
-	if($permiteCuentas && !$_SESSION["logeado"] && isset($_COOKIE["iduser"]) && isset($_COOKIE["usercode"])){
+	if($_SESSION['configPage']['permiteCuentas'] && !$_SESSION["logeado"] && isset($_COOKIE["iduser"]) && isset($_COOKIE["usercode"])){
 		//poner regex;
 		$sql = "SELECT username, admin, nav, code, verWip FROM user_config, usuarios, user_logs_register WHERE usuarios.id_user='{$_COOKIE["iduser"]}' AND user_config.id_user=usuarios.id_user AND user_logs_register.id_user = usuarios.id_user ORDER BY fecha DESC LIMIT 1";
 		$logeandoCookies = comandoMySql($sql)[0];
@@ -69,33 +75,20 @@ if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
 			$_SESSION['verWip'] = ($logeandoCookies[4] == 1);
 
 			$caducidad =  time() + (60 * 60 * 24 * 28);
-			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $hostPage);
+			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $_SESSION['configPage']['hostPage']);
 			
 			unset($sql2);
 			unset($codeData);
 		}
 		else{
 			jsAlert("Se ha detectado un error con el inicio de sesion automatico.\nQuizas se produjo porque iniciaste sesión en otro computador o navegador.");
-			desSetearCookie("iduser", $hostPage);
-			desSetearCookie("usercode", $hostPage);
+			desSetearCookie("iduser", $_SESSION['configPage']['hostPage']);
+			desSetearCookie("usercode", $_SESSION['configPage']['hostPage']);
 		}
 		unset($sql);
 		unset($logeandoCookies);
 	}
 }
-
-$navData = array(
-	'<img src="resources/home-white.png" width="32" height="38" alt="Home" style="border:0;">' => array("?p=home", 0, 0), 
-	'Digito verificador' => array("?p=verificador", 0, 0), 
-	'Calculadora de prioridad' => array("?p=prioridad", 0, 0), 
-	'Calculadoras de notas' => array("?p=notas", 1, 1), 
-	'Fibonacci' => array("?p=fibonacci", 0, 0), 
-	'Google' => array("?p=google", 0, 0), 
-	'Facebook' => array("?p=facebook", 2, 0), 
-	'Configuración' => array('?p=configuracion', 0, 0), 
-	'Acerca de' => array("?p=acercade", 1, 1), 
-	'Deudas' => array("?p=deudas", 3, 1)
-);
 
 if(!isset($_SESSION['verWip'])){
 	$_SESSION['verWip'] = False;

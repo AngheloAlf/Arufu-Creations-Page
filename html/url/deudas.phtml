@@ -1,5 +1,5 @@
 <?php
-if(!$permiteCuentas){
+if(!$_SESSION['configPage']['permiteCuentas']){
 	require "404.phtml";
 }
 else{
@@ -18,8 +18,8 @@ else{
 			jsAlert("Deudas ingresadas correctamente.");
 		}
 		elseif($_POST["boton"] == "pagarDeuda"){
-			require "sv/loginData.php";
-			$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+			$SQLdata = cargarJson('loginData');
+			$dbconn = new mysqli($SQLdata['SQLhost'], $SQLdata['SQLusuario'], $SQLdata['SQLpass'], $SQLdata['SQLname']);
 
 			$monto = floatval($_POST['monto']);
 			if(mysqli_connect_error()){

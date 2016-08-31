@@ -12,7 +12,7 @@
 								<h2><p style="text-align: center;">Bienvenido a Arufu Home Page</p></h2>
 								<p style="text-align: center;">Desplácese por el navegador.</p>
 								<?php
-								if($permiteCuentas && !$_SESSION["logeado"]){
+								if($_SESSION['configPage']['permiteCuentas'] && !$_SESSION["logeado"]){
 									?>
 									<p style="text-align: center;">No es necesario tener una cuenta para usar esta pagina.</p>
 									<?php
@@ -24,7 +24,7 @@
 					<br>
 				</div>
 				<?php
-				if($permiteCuentas && ((isset($_SESSION["logeado"]) && !$_SESSION["logeado"]) || !isset($_SESSION["logeado"]))){
+				if($_SESSION['configPage']['permiteCuentas'] && ((isset($_SESSION["logeado"]) && !$_SESSION["logeado"]) || !isset($_SESSION["logeado"]))){
 					?>
 					<div class="col-md-6">
 						<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 90%;padding: 00px;"';} ?> >

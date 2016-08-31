@@ -24,7 +24,7 @@ if(isset($_POST["boton"])){
 			$_SESSION['verWip'] = false;
 		}
 
-		if($permiteCuentas && $_SESSION["logeado"]){
+		if($_SESSION['configPage']['permiteCuentas'] && $_SESSION["logeado"]){
 			$verWip = 0;
 			if($_SESSION['verWip']){$verWip = 1;}
 			$sql = "UPDATE user_config, usuarios SET nav='{$_SESSION["nav"]}', verWip='{$verWip}' WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
@@ -34,7 +34,7 @@ if(isset($_POST["boton"])){
 	elseif("restablecer" == $_POST["boton"]){
 		unset($_SESSION["js"]);
 		$_SESSION["nav"] = "topnav";
-		if($permiteCuentas && $_SESSION["logeado"]){
+		if($_SESSION['configPage']['permiteCuentas'] && $_SESSION["logeado"]){
 			$sql = "UPDATE user_config, usuarios SET nav='{$_SESSION["nav"]}' WHERE user_config.id_user=usuarios.id_user AND username='{$_SESSION["user"]}'";
 			comandoMySql($sql);
 		}

@@ -1,0 +1,52 @@
+{
+	"<img src='resources/home-white.png' width='32' height='38' alt='Home' style='border:0;'>":[
+		"?p=home",
+		0,
+		0
+	],
+	"Digito verificador":[
+		"?p=verificador",
+		0,
+		0
+	],
+	"Calculadora de prioridad":[
+		"?p=prioridad",
+		0,
+		0
+	],
+	"Calculadoras de notas":[
+		"?p=notas",
+		1,
+		1
+	],
+	"Fibonacci":[
+		"?p=fibonacci",
+		0,
+		0
+	],
+	"Google":[
+		"?p=google",
+		0,
+		0
+	],
+	"Facebook":[
+		"?p=facebook",
+		2,
+		0
+	],
+	"Configuraci\u00f3n":[
+		"?p=configuracion",
+		0,
+		0
+	],
+	"Acerca de":[
+		"?p=acercade",
+		1,
+		1
+	],
+	"Deudas":[
+		"?p=deudas",
+		3,
+		1
+	]
+}

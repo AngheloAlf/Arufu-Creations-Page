@@ -174,9 +174,9 @@ function generarFibonacci($cantidad, $conCero){
 }
 
 function comandoMySql($sql){
-	require "sv/loginData.php";
 	$retornar = null;
-	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+	$SQLdata = cargarJson('loginData');
+	$dbconn = new mysqli($SQLdata['SQLhost'], $SQLdata['SQLusuario'], $SQLdata['SQLpass'], $SQLdata['SQLname']);
 	if(mysqli_connect_error()){
 		jsAlert("Ha ocurrido un problema interno. Intentelo mas tarde.");
 	}
@@ -254,6 +254,10 @@ function generarCode($idUsuario){
 	$code = dechex(($fecha*10)/($idUsuario*8));
 	$fecha = date('Y-m-d G:i:s', $fecha);
 	return array($code, $fecha, $ipUsuario, $ipForward);
+}
+
+function cargarJson($json){
+	return json_decode(file_get_contents('json/'.$json.'.json'), JSON_FORCE_OBJECT);
 }
 
 autoRedirect("common.php", "index.php");

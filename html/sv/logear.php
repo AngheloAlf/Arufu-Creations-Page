@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["pass"]){
-	require "loginData.php";
-	$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+	$SQLdata = cargarJson('loginData');
+	$dbconn = new mysqli($SQLdata['SQLhost'], $SQLdata['SQLusuario'], $SQLdata['SQLpass'], $SQLdata['SQLname']);
 	if(mysqli_connect_error()){
 		//Poner wea de la wea para devolverse
 		$_SESSION["errores"]["internoLogear"] = true;
@@ -30,8 +30,8 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 
 		if(isset($_POST["mantenerSesion"]) && isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
 			$caducidad =  time() + (60 * 60 * 24 * 28);
-			$_SESSION["setearCookies"][] = array("iduser", $resultado[0], $caducidad, $hostPage);
-			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $hostPage);
+			$_SESSION["setearCookies"][] = array("iduser", $resultado[0], $caducidad, $_SESSION['configPage']['hostPage']);
+			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $_SESSION['configPage']['hostPage']);
 		}
 	}
 	else{

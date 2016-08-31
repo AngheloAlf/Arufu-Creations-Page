@@ -13,8 +13,8 @@ if(isset($_POST["Cuser"]) && isset($_POST["Cpass"]) && isset($_POST["Cpass2"]) &
 		jsAlert("Ingrese un e-Mail valido.");
 	}
 	if(!$error){
-		require "loginData.php";
-		$dbconn = new mysqli($SQLhost, $SQLusuario, $SQLpass, $SQLname);
+		$SQLdata = cargarJson('loginData');
+		$dbconn = new mysqli($SQLdata['SQLhost'], $SQLdata['SQLusuario'], $SQLdata['SQLpass'], $SQLdata['SQLname']);
 		if(mysqli_connect_error()){
 			//Poner wea de la wea para devolverse
 			$_SESSION["errores"]["internoCreacion"] = true;

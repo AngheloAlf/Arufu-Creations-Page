@@ -1,6 +1,0 @@
-<?php
-$SQLhost = 'localhost';
-$SQLusuario = "root";
-$SQLpass = "";
-$SQLname = "arufucreations";
-?>
