@@ -33,12 +33,12 @@ function obtenerDia(){
 function obtenerFechaHora(){
 	//return date('Y-m-d G:i:s', __getDateNTP());
 	return date('Y-m-d G:i:s');
-}/*
+}
 function convertirFechaUsuario($fecha){
 	$entradaExplotada = explode(" ", $fecha);
 	$fechaExplotada = explode("-", $entradaExplotada[0]);
 	return $fechaExplotada[2]."/".$fechaExplotada[1]."/".$fechaExplotada[0]." ".$entradaExplotada[1];
-}
+}/*
 function obtenerFechaHoraParaUsuario(){
 	return date("d/m/Y G:i:s", __getDateNTP());
 	return date('d/m/Y G:i:s');

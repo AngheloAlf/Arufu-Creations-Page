@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-08-30 15:05:15
+Date: 2016-10-11 16:01:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -67,22 +67,46 @@ CREATE TABLE `registro_deudas` (
   `monto_abonado` float NOT NULL DEFAULT '0',
   `ultimo_abono` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_deuda`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of registro_deudas
 -- ----------------------------
-INSERT INTO `registro_deudas` VALUES ('1', '5', '1', '2016-08-30 01:13:02', '2016-09-20 00:00:00', 'natura', '', '55877', '0', '2016-08-30 01:13:02');
-INSERT INTO `registro_deudas` VALUES ('2', '5', '1', '2016-08-30 00:12:18', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '0', null);
-INSERT INTO `registro_deudas` VALUES ('3', '5', '2', '2016-08-30 00:12:18', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '0', null);
-INSERT INTO `registro_deudas` VALUES ('4', '5', '3', '2016-08-30 00:12:18', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '0', null);
-INSERT INTO `registro_deudas` VALUES ('5', '5', '4', '2016-08-30 00:12:18', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '0', null);
-INSERT INTO `registro_deudas` VALUES ('6', '5', '5', '2016-08-30 00:12:18', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '0', null);
-INSERT INTO `registro_deudas` VALUES ('7', '5', '1', '2016-08-30 00:14:16', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '0', null);
-INSERT INTO `registro_deudas` VALUES ('8', '5', '2', '2016-08-30 00:14:16', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '0', null);
-INSERT INTO `registro_deudas` VALUES ('9', '5', '3', '2016-08-30 00:14:16', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '0', null);
-INSERT INTO `registro_deudas` VALUES ('10', '5', '4', '2016-08-30 00:14:16', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '0', null);
-INSERT INTO `registro_deudas` VALUES ('11', '5', '5', '2016-08-30 00:14:16', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '0', null);
+INSERT INTO `registro_deudas` VALUES ('2', '5', '1', '2016-10-10 20:55:13', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '0', '2016-10-10 20:55:13');
+INSERT INTO `registro_deudas` VALUES ('3', '5', '2', '2016-09-20 19:03:53', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '3198', '2016-09-20 19:03:53');
+INSERT INTO `registro_deudas` VALUES ('4', '5', '3', '2016-10-02 22:57:07', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '3198', '2016-10-02 22:57:07');
+INSERT INTO `registro_deudas` VALUES ('5', '5', '4', '2016-10-04 22:55:52', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '3198', '2016-10-04 22:55:52');
+INSERT INTO `registro_deudas` VALUES ('6', '5', '5', '2016-09-20 18:42:26', '2016-09-08 00:00:00', 'gas', 'Agosto', '3198', '3198', '2016-09-20 18:42:26');
+INSERT INTO `registro_deudas` VALUES ('7', '5', '1', '2016-10-10 20:55:13', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '0', '2016-10-10 20:55:13');
+INSERT INTO `registro_deudas` VALUES ('8', '5', '2', '2016-09-30 20:11:50', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '4573', '2016-09-30 20:11:50');
+INSERT INTO `registro_deudas` VALUES ('9', '5', '3', '2016-10-02 22:57:07', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '4573', '2016-10-02 22:57:07');
+INSERT INTO `registro_deudas` VALUES ('10', '5', '4', '2016-10-04 22:55:54', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '427', '2016-10-04 22:55:54');
+INSERT INTO `registro_deudas` VALUES ('11', '5', '5', '2016-09-20 18:42:26', '2016-09-09 00:00:00', 'internet', 'Agosto', '4573', '4573', '2016-09-20 18:42:26');
+INSERT INTO `registro_deudas` VALUES ('12', '5', '1', '2016-10-10 20:55:13', '2016-09-27 00:00:00', 'agua', 'Septiembre', '185', '0', '2016-10-10 20:55:13');
+INSERT INTO `registro_deudas` VALUES ('13', '5', '2', '2016-09-30 20:11:50', '2016-09-27 00:00:00', 'agua', 'Septiembre', '185', '185', '2016-09-30 20:11:50');
+INSERT INTO `registro_deudas` VALUES ('14', '5', '3', '2016-10-02 22:57:07', '2016-09-27 00:00:00', 'agua', 'Septiembre', '185', '185', '2016-10-02 22:57:07');
+INSERT INTO `registro_deudas` VALUES ('15', '5', '4', '2016-09-12 21:51:47', '2016-09-27 00:00:00', 'agua', 'Septiembre', '185', '0', null);
+INSERT INTO `registro_deudas` VALUES ('16', '5', '5', '2016-09-20 18:42:26', '2016-09-27 00:00:00', 'agua', 'Septiembre', '185', '185', '2016-09-20 18:42:26');
+INSERT INTO `registro_deudas` VALUES ('17', '5', '1', '2016-10-10 20:55:13', '2016-09-16 00:00:00', 'gas', 'Septiembre', '3245', '0', '2016-10-10 20:55:13');
+INSERT INTO `registro_deudas` VALUES ('18', '5', '2', '2016-09-30 20:14:39', '2016-09-16 00:00:00', 'gas', 'Septiembre', '3245', '3245', '2016-09-30 20:14:39');
+INSERT INTO `registro_deudas` VALUES ('19', '5', '3', '2016-10-02 22:58:21', '2016-09-16 00:00:00', 'gas', 'Septiembre', '3245', '3245', '2016-10-02 22:58:21');
+INSERT INTO `registro_deudas` VALUES ('20', '5', '4', '2016-09-12 21:52:52', '2016-09-16 00:00:00', 'gas', 'Septiembre', '3245', '0', null);
+INSERT INTO `registro_deudas` VALUES ('21', '5', '5', '2016-09-30 20:14:53', '2016-09-16 00:00:00', 'gas', 'Septiembre', '3245', '3244', '2016-09-30 20:14:53');
+INSERT INTO `registro_deudas` VALUES ('22', '5', '1', '2016-10-10 20:55:13', '2016-10-07 00:00:00', 'luz', 'Septiembre', '3001', '0', '2016-10-10 20:55:13');
+INSERT INTO `registro_deudas` VALUES ('23', '5', '2', '2016-10-04 23:24:19', '2016-10-07 00:00:00', 'luz', 'Septiembre', '3001', '1000', '2016-10-04 23:24:19');
+INSERT INTO `registro_deudas` VALUES ('24', '5', '3', '2016-10-04 22:55:20', '2016-10-07 00:00:00', 'luz', 'Septiembre', '3001', '2999', '2016-10-04 22:55:20');
+INSERT INTO `registro_deudas` VALUES ('25', '5', '4', '2016-09-30 20:13:00', '2016-10-07 00:00:00', 'luz', 'Septiembre', '3001', '0', null);
+INSERT INTO `registro_deudas` VALUES ('26', '5', '5', '2016-09-30 20:13:00', '2016-10-07 00:00:00', 'luz', 'Septiembre', '3001', '0', null);
+INSERT INTO `registro_deudas` VALUES ('27', '5', '1', '2016-10-10 20:49:20', '2016-10-18 00:00:00', 'gas', 'Octubre', '2939', '0', null);
+INSERT INTO `registro_deudas` VALUES ('28', '5', '2', '2016-10-10 20:49:20', '2016-10-18 00:00:00', 'gas', 'Octubre', '2939', '0', null);
+INSERT INTO `registro_deudas` VALUES ('29', '5', '3', '2016-10-10 20:49:20', '2016-10-18 00:00:00', 'gas', 'Octubre', '2939', '0', null);
+INSERT INTO `registro_deudas` VALUES ('30', '5', '4', '2016-10-10 20:49:20', '2016-10-18 00:00:00', 'gas', 'Octubre', '2939', '0', null);
+INSERT INTO `registro_deudas` VALUES ('31', '5', '5', '2016-10-10 20:49:20', '2016-10-18 00:00:00', 'gas', 'Octubre', '2939', '0', null);
+INSERT INTO `registro_deudas` VALUES ('32', '5', '1', '2016-10-10 20:50:03', '2016-10-10 00:00:00', 'internet', 'Octubre', '4574', '0', null);
+INSERT INTO `registro_deudas` VALUES ('33', '5', '2', '2016-10-10 20:50:03', '2016-10-10 00:00:00', 'internet', 'Octubre', '4574', '0', null);
+INSERT INTO `registro_deudas` VALUES ('34', '5', '3', '2016-10-10 20:50:03', '2016-10-10 00:00:00', 'internet', 'Octubre', '4574', '0', null);
+INSERT INTO `registro_deudas` VALUES ('35', '5', '4', '2016-10-10 20:50:03', '2016-10-10 00:00:00', 'internet', 'Octubre', '4574', '0', null);
+INSERT INTO `registro_deudas` VALUES ('36', '5', '5', '2016-10-10 20:50:03', '2016-10-10 00:00:00', 'internet', 'Octubre', '4574', '0', null);
 
 -- ----------------------------
 -- Table structure for user_config
@@ -114,7 +138,7 @@ CREATE TABLE `user_logs_register` (
   `ip` varchar(45) NOT NULL,
   `ip_forward` varchar(45) NOT NULL,
   PRIMARY KEY (`id_register`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_logs_register
@@ -143,6 +167,15 @@ INSERT INTO `user_logs_register` VALUES ('21', '5', '15ede15b', '2016-08-19 18:1
 INSERT INTO `user_logs_register` VALUES ('22', '5', '15f13296', '2016-08-29 19:50:48', '::1', '');
 INSERT INTO `user_logs_register` VALUES ('23', '5', '15f1383e', '2016-08-29 21:27:21', '::1', '');
 INSERT INTO `user_logs_register` VALUES ('24', '5', '15f13848', '2016-08-29 21:28:01', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('25', '4', '1b6e40c0', '2016-08-31 15:53:00', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('26', '5', '15f5d359', '2016-09-12 21:50:47', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('27', '5', '15f71596', '2016-09-16 17:30:19', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('28', '5', '15f86b3b', '2016-09-20 18:41:03', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('29', '5', '15f86c8f', '2016-09-20 19:03:41', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('30', '5', '15fa675e', '2016-09-26 19:13:12', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('31', '5', '15fbbb36', '2016-09-30 19:53:15', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('32', '5', '15fc6eb7', '2016-10-02 22:56:46', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('33', '5', '15ff0a34', '2016-10-10 20:48:32', '::1', '');
 
 -- ----------------------------
 -- Table structure for usuarios
