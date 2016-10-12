@@ -326,4 +326,63 @@ function getNumberFromInput(Id){
 	}
 	return parseInt(number);
 }
+
+function formulaDanosDofus(danoHechizo, elemento, pot, danos, danosEle){
+	if(danoHechizo <= 0){
+		return 0;
+	}
+	return danoHechizo*((elemento + pot + 100)/100) + danos + danosEle;
+}
+
+function aplicarResisDanos(danoTotal, resisPor, resisFija){
+	if(resisPor >= 100){
+		return 0;
+	}
+	var danoCalculado = danoTotal*((100 - resisPor)/100) - resisFija;
+	if(danoCalculado < 0){
+		return 0;
+	}
+	return danoCalculado;
+}
+
+function calcularDanos(){
+	var cantidadHechizos = getNumberFromInput("cantidadHechizos");
+	var danMin, danMax, elemento, pot, danos, danosEle;
+	var resisPor, resisFija;
+	var totalMin, totalMax;
+	var danosMinTotales = new Array();
+	var danosMaxTotales = new Array();
+
+	pot = getNumberFromInput("pot");
+
+	for(var i = 0; i < cantidadHechizos; i++){
+		danMin = getNumberFromInput("danMin"+i);
+		danMax = getNumberFromInput("danMax"+i);
+		elemento = getNumberFromInput("elemento"+i);
+		danos = getNumberFromInput("danos"+i);
+		danosEle = getNumberFromInput("danosEle"+i);
+
+		totalMin = formulaDanosDofus(danMin, elemento, pot, danos, danosEle);
+		totalMax = formulaDanosDofus(danMax, elemento, pot, danos, danosEle);
+
+		resisPor = getNumberFromInput("resisPor"+i);
+		resisFija = getNumberFromInput("resisFija"+i);
+
+		totalMin = aplicarResisDanos(totalMin, resisPor, resisFija);
+		totalMax = aplicarResisDanos(totalMax, resisPor, resisFija);
+
+		totalMin = Math.floor(totalMin);
+		totalMax = Math.floor(totalMax);
+		danosMinTotales.push(totalMin);
+		danosMaxTotales.push(totalMax);
+		document.getElementById("danosTotalMin"+i).innerHTML = totalMin;
+		document.getElementById("danosTotalMax"+i).innerHTML = totalMax;
+	}
+	return [danosMinTotales, danosMaxTotales];
+}
+
+function cambiarCantidadHechizos(){
+	var cantidadHechizos = getNumberFromInput("cantidadHechizos");
+}
+
 window.addEventListener("resize", cambioDeTamano);

@@ -1,0 +1,224 @@
+<?php
+$cantidadHechizos = 4;
+$maxHechizos = 5;
+?>
+
+<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
+	<div class="row-fluid">
+		<div class="col-md-12">
+			<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 95%;padding: 00px;"';} ?> >
+				<div class="panel-heading">
+					<a data-toggle="collapse" href="#collapseDanos">Calculadora de daños</a>
+				</div>
+				<div id="collapseDanos" class="panel-collapse in">
+					<div class="panel-body">
+						<table class="sin-bordes">
+							<tr class="sin-bordes">
+								<td class="sin-bordes">
+									<label>Cantidad de hechizos:</label>
+								</td>
+								<td class="sin-bordes">
+									<input class="form-control" type="number" name="cantidadHechizos" id="cantidadHechizos" onclick="cambiarCantidadHechizos()" min="1" max="<?php echo $maxHechizos; ?>" value="<?php echo $cantidadHechizos; ?>" >
+								</td>
+							</tr>
+						</table>
+						<br>
+						<table>
+							<tr>
+								<th></th>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<th";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo ">Hechizo ".($i+1)."</th>";
+								}
+								?>
+							</tr>
+							<tr>
+								<td>
+									<p>Daño minimo del hechizo</p>
+								</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<input class="form-control" type="number" name="danMin'.$i.'" id="danMin'.$i.'" value="0" >
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>
+									<p>Daño maximo del hechizo</p>
+								</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<input class="form-control" type="number" name="danMax'.$i.'" id="danMax'.$i.'" value="0" >
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>
+									<p>Elemento</p>
+								</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<input class="form-control" type="number" name="elemento'.$i.'" id="elemento'.$i.'" value="0" >
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>
+									<p>Potencia</p>
+								</td>
+								<td  <?php echo 'colspan="'.$maxHechizos.'"'; ?> >
+									<input class="form-control" type="number" name="pot" id="pot" value="0" >
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>Daños</p>
+								</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<input class="form-control" type="number" name="danos'.$i.'" id="danos'.$i.'" value="0" >
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>
+									<p>Daños elementales</p>
+								</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<input class="form-control" type="number" name="danosEle'.$i.'" id="danosEle'.$i.'" value="0" >
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<?php
+								for($i=0; $i < $maxHechizos + 1; $i++){ 
+									echo '<td';
+									if($i > $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '><br><br></td>';
+								}
+								?>
+							</tr>
+
+							<tr>
+								<td>Resistencia % enemigo</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<input class="form-control" type="number" name="resisPor'.$i.'" id="resisPor'.$i.'" value="0" >
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>Resistencia fija enemigo</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<input class="form-control" type="number" name="resisFija'.$i.'" id="resisFija'.$i.'" value="0" >
+									</td>
+									';
+								}
+								?>
+							</tr>
+
+							<tr>
+								<?php
+								for($i=0; $i < $maxHechizos + 1; $i++){ 
+									echo '<td';
+									if($i > $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '><br><br></td>';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>Daño total minimo</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<p class="form-control" name="danosTotalMin'.$i.'" id="danosTotalMin'.$i.'"></p>
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>Daño total maximo</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo '<td';
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<p class="form-control" name="danosTotalMax'.$i.'" id="danosTotalMax'.$i.'"></p>
+									</td>
+									';
+								}
+								?>
+							</tr>
+						</table>
+						<br>
+						<button class="btn btn-primary" value="calcularDanos" onclick="calcularDanos()">Calcular</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
