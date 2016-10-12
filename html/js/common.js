@@ -183,7 +183,7 @@ function revisarMail(mail){
 }
 
 function crearCuenta(){
-	return revisarPassword(document.getElementsByID('Cpass').value, document.getElementsByID('Cpass2').value) && revisarMail(document.getElementsByID('Cmail').value);
+	return revisarPassword(document.getElementById('Cpass').value, document.getElementById('Cpass2').value) && revisarMail(document.getElementById('Cmail').value);
 }
 
 function easter_eggColor(){
@@ -315,4 +315,15 @@ function revisarClavesOnTheFly(){
 	}
 }
 
+function testIfNumber(string){
+	return /^[0-9]+$/.test(string);
+}
+
+function getNumberFromInput(Id){
+	var number = document.getElementById(Id).value;
+	if(!testIfNumber(number)){
+		return 0;
+	}
+	return parseInt(number);
+}
 window.addEventListener("resize", cambioDeTamano);
