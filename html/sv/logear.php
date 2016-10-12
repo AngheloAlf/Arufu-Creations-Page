@@ -10,7 +10,8 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 	}
 	//echo 'Éxito... ' . $dbconn->host_info . "\n";
 	$usuario = strtolower($_POST["user"]);
-	$sql = "SELECT usuarios.id_user, username, admin, nav, verWip FROM usuarios, user_config WHERE LCASE(username) = '{$usuario}' AND password = '{$_POST["pass"]}' AND user_config.id_user=usuarios.id_user";
+	$clave = $_POST["pass"];
+	$sql = "SELECT usuarios.id_user, username, admin, nav, verWip FROM usuarios, user_config WHERE LCASE(username) = '{$usuario}' AND password = '{$clave}' AND user_config.id_user=usuarios.id_user";
 	$check = $dbconn->query($sql);
 	if($check && $check->num_rows == 1){
 		$resultado = $check->fetch_array(MYSQLI_NUM);
