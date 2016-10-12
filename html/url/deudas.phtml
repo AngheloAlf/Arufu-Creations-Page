@@ -1,9 +1,8 @@
 <?php
-if(!$_SESSION['configPage']['permiteCuentas']){
+if(!$_SESSION['configPage']['permiteCuentas'] || !isset($_SESSION["logeado"]) || (isset($_SESSION["logeado"]) && !$_SESSION["logeado"]) || $_SESSION["admin"] < 3){
 	require "404.phtml";
 }
 else{
-
 	?>
 	<div class="container-fluid" <?php if(!esMobil($uagent_obj)){ echo 'style="padding:0px 15% 0px 15%"';} ?> >
 		<div class="row-fluid">
@@ -65,7 +64,11 @@ else{
 							}
 						}
 						if(!$error){
-							jsAlert("Abonado correctamente.");
+							$mensaje = "Abonado correctamente.";
+							if($monto > 0){
+								$mensaje .= "\\nHa sobrado $".$monto;
+							}
+							jsAlert($mensaje);
 						}
 					}
 				}
@@ -216,6 +219,11 @@ else{
 								<label>Monto que abona:</label>
 								<input type="text" required class="form-control" id="monto" name="monto" placeholder="$" />
 								<br>
+								<?php 
+								if(isset($monto) && $monto > 0){
+									echo "<p>Ha sobrado $".$monto." del ultimo abono</p><br>";
+								}
+								?>
 								<button class="btn btn-primary" id="boton" name="boton" value="pagarDeuda">Abonar deuda</button>
 								<br>
 							</form>
