@@ -204,7 +204,7 @@ function imprimirNavData($arreglo){
 			continue;
 		}
 		$navegacion = '<a href="'.$value[0];
-		if($value[1] > 0){
+		if($value[2] > 0){
 			$navegacion .= '&wip=';
 			if(!$_SESSION['verWip']){
 				$navegacion .= "true";
