@@ -365,8 +365,12 @@ function getNumberFromInput(Id){
 	return parseInt(number);
 }
 
-function formulaDanosDofus(danoHechizo, elemento, pot, danos, danosEle){
-	if(danoHechizo <= 0){
+function sumTwoNumbers(a, b){
+	return a + b;
+}
+
+function formulaDanosDofus(tipo, danoHechizo, elemento, pot, danos, danosEle){
+	if(danoHechizo <= 0 || tipo == 2){
 		return 0;
 	}
 	return danoHechizo*((elemento + pot + 100)/100) + danos + danosEle;
@@ -383,44 +387,241 @@ function aplicarResisDanos(danoTotal, resisPor, resisFija){
 	return danoCalculado;
 }
 
+function calcularVidaRobada(tipo, dano){
+	if(tipo == 1){
+		return Math.floor(Math.floor(dano)/2);
+	}
+	else{
+		return 0;
+	}
+}
+
+function formulaPdVDevueltos(tipo, pdvDevueltosHechizo, inteligencia, curas){
+	if(pdvDevueltosHechizo <= 0 || tipo != 2){
+		return 0;
+	}
+	return Math.floor(pdvDevueltosHechizo*((inteligencia + 100)/100) + curas);
+}
+
+function aplicarDanosYCuras(danos, curas){
+	if(danos - curas > 0){
+		return [danos - curas, 0];
+	}
+	return [0, curas - danos];
+}
+
 function calcularDanos(){
 	var cantidadHechizos = getNumberFromInput("cantidadHechizos");
-	var danMin, danMax, elemento, pot, danos, danosEle;
+	var tipo, danMin, danMax, elemento, pot, danos, danosEle;
 	var resisPor, resisFija;
-	var totalMin, totalMax;
+	var totalMin, totalMax, robadaMin, robadaMax, pdvMin, pdvMax;
 	var danosMinTotales = new Array();
 	var danosMaxTotales = new Array();
+	var vidaMinRobada = new Array();
+	var vidaMaxRobada = new Array();
+	var pdvDevueltosMin = new Array();
+	var pdvDevueltosMax = new Array();
 
+	//Potencia y daños generales
 	pot = getNumberFromInput("pot");
+	danos = getNumberFromInput("danos");
 
 	for(var i = 0; i < cantidadHechizos; i++){
+		//Obtiene los valores asociados al hechizo y tipo de golpe
+		tipo = getNumberFromInput("danTipo"+i);
 		danMin = getNumberFromInput("danMin"+i);
 		danMax = getNumberFromInput("danMax"+i);
 		elemento = getNumberFromInput("elemento"+i);
-		danos = getNumberFromInput("danos"+i);
 		danosEle = getNumberFromInput("danosEle"+i);
 
-		totalMin = formulaDanosDofus(danMin, elemento, pot, danos, danosEle);
-		totalMax = formulaDanosDofus(danMax, elemento, pot, danos, danosEle);
+		//Calculo de daños
+		totalMin = formulaDanosDofus(tipo, danMin, elemento, pot, danos, danosEle);
+		totalMax = formulaDanosDofus(tipo, danMax, elemento, pot, danos, danosEle);
 
+		//Pone en pantalla el calculo
+		document.getElementById("danosMinSinResis"+i).innerHTML = Math.floor(totalMin);
+		document.getElementById("danosMaxSinResis"+i).innerHTML = Math.floor(totalMax);
+
+		//Obtiene las resistencias ingresadas por el usuario
 		resisPor = getNumberFromInput("resisPor"+i);
 		resisFija = getNumberFromInput("resisFija"+i);
 
+		//Calcula los daños producidos teniendo en cuenta las resistencias
 		totalMin = aplicarResisDanos(totalMin, resisPor, resisFija);
 		totalMax = aplicarResisDanos(totalMax, resisPor, resisFija);
 
+		//Pone en pantalla los calculos
+		document.getElementById("danosTotalMin"+i).innerHTML = Math.floor(totalMin);
+		document.getElementById("danosTotalMax"+i).innerHTML = Math.floor(totalMax);
+
+		//Calcula la vida robada
+		robadaMin = calcularVidaRobada(tipo, totalMin);
+		robadaMax = calcularVidaRobada(tipo, totalMax);
+
+		//Se almacena y se pone en pantalla la vida robada
+		vidaMinRobada.push(robadaMin);
+		vidaMaxRobada.push(robadaMax);
+		document.getElementById("vidaRobadaMin"+i).innerHTML = robadaMin;
+		document.getElementById("vidaRobadaMax"+i).innerHTML = robadaMax;
+
+		//Se almacena y se pone en pantalla el daño producido
 		totalMin = Math.floor(totalMin);
 		totalMax = Math.floor(totalMax);
 		danosMinTotales.push(totalMin);
 		danosMaxTotales.push(totalMax);
 		document.getElementById("danosTotalMin"+i).innerHTML = totalMin;
 		document.getElementById("danosTotalMax"+i).innerHTML = totalMax;
+
+		//Calcula los PdV devueltos
+		pdvMin = formulaPdVDevueltos(tipo, danMin, elemento, danosEle);
+		pdvMax = formulaPdVDevueltos(tipo, danMax, elemento, danosEle);
+
+		//Se almacena y se ponen en pantalla los PdV devueltos
+		pdvDevueltosMin.push(pdvMin);
+		pdvDevueltosMax.push(pdvMax);
+		document.getElementById("pdvMin"+i).innerHTML = pdvMin;
+		document.getElementById("pdvMax"+i).innerHTML = pdvMax;
 	}
-	return [danosMinTotales, danosMaxTotales];
+
+	var aux1 = aplicarDanosYCuras(danosMinTotales.reduce(sumTwoNumbers), pdvDevueltosMin.reduce(sumTwoNumbers));
+	var aux2 = aplicarDanosYCuras(danosMaxTotales.reduce(sumTwoNumbers), pdvDevueltosMax.reduce(sumTwoNumbers));
+
+	var danoTotalMinimo = aux1[0];
+	var danoTotalMaximo = aux2[0];
+
+	var curasTotalMinimo = aux1[1];
+	var curasTotalMaximo = aux2[1];
+
+	//Se pone en pantalla el rango total de daño hecho
+	document.getElementById("danoMinSum").innerHTML = danoTotalMinimo;
+	document.getElementById("danoMaxSum").innerHTML = danoTotalMaximo;
+
+	//Se pone en pantalla el rango total de vida robada
+	document.getElementById("roboMinSum").innerHTML = vidaMinRobada.reduce(sumTwoNumbers);
+	document.getElementById("roboMaxSum").innerHTML = vidaMaxRobada.reduce(sumTwoNumbers);
+
+	//Se pone en pantalla el rango total de PdV devueltos
+	document.getElementById("pdvMinSum").innerHTML = curasTotalMinimo;
+	document.getElementById("pdvMaxSum").innerHTML = curasTotalMaximo;
+	
+	$('#collapseResultados').collapse("show");
+
+	return [danosMinTotales, danosMaxTotales, vidaMinRobada, vidaMaxRobada, pdvDevueltosMin, pdvDevueltosMax];
 }
 
 function cambiarCantidadHechizos(){
 	var cantidadHechizos = getNumberFromInput("cantidadHechizos");
+	var maxHechizos = getNumberFromInput("maxHechizos");
+	for (var i = 0; i < maxHechizos; i++) {
+		if(i < cantidadHechizos){
+			//Quitar hidden
+
+			document.getElementById("colHechizo"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colDanTipo"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colDanMin"+(i.toString())).removeAttribute("hidden");
+			document.getElementById("colDanMax"+(i.toString())).removeAttribute("hidden");
+			document.getElementById("colElemento"+(i.toString())).removeAttribute("hidden");
+			//colPot
+			//document.getElementById("colDanos"+(i.toString())).removeAttribute("hidden");
+			document.getElementById("colDanosEle"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colEspacio1_"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colResisPor"+(i.toString())).removeAttribute("hidden");
+			document.getElementById("colResisFija"+(i.toString())).removeAttribute("hidden");
+
+			
+			document.getElementById("col2Hechizo"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colDanosMinSinResis"+(i.toString())).removeAttribute("hidden");
+			document.getElementById("colDanosMaxSinResis"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colEspacio4_"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colDanosTotalMin"+(i.toString())).removeAttribute("hidden");
+			document.getElementById("colDanosTotalMax"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colEspacio3_"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colVidaRobadaMin"+(i.toString())).removeAttribute("hidden");
+			document.getElementById("colVidaRobadaMax"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colPdVMin"+(i.toString())).removeAttribute("hidden");
+			document.getElementById("colPdVMax"+(i.toString())).removeAttribute("hidden");
+
+			document.getElementById("colEspacio5_"+(i.toString())).removeAttribute("hidden");
+
+		}
+		else{
+			//Poner hidden
+			document.getElementById("colHechizo"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colDanTipo"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colDanMin"+(i.toString())).setAttribute("hidden", "");
+			document.getElementById("colDanMax"+(i.toString())).setAttribute("hidden", "");
+			document.getElementById("colElemento"+(i.toString())).setAttribute("hidden", "");
+			//colPot
+			//document.getElementById("colDanos"+(i.toString())).setAttribute("hidden", "");
+			document.getElementById("colDanosEle"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colEspacio1_"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colResisPor"+(i.toString())).setAttribute("hidden", "");
+			document.getElementById("colResisFija"+(i.toString())).setAttribute("hidden", "");
+
+			
+			document.getElementById("col2Hechizo"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colDanosMinSinResis"+(i.toString())).setAttribute("hidden", "");
+			document.getElementById("colDanosMaxSinResis"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colEspacio4_"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colDanosTotalMin"+(i.toString())).setAttribute("hidden", "");
+			document.getElementById("colDanosTotalMax"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colEspacio3_"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colVidaRobadaMin"+(i.toString())).setAttribute("hidden", "");
+			document.getElementById("colVidaRobadaMax"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colPdVMin"+(i.toString())).setAttribute("hidden", "");
+			document.getElementById("colPdVMax"+(i.toString())).setAttribute("hidden", "");
+
+			document.getElementById("colEspacio5_"+(i.toString())).setAttribute("hidden", "");
+		}
+	}
+}
+
+function cambiarTipoDano(){
+	var maxHechizos = getNumberFromInput("maxHechizos");
+	var tipo;
+	for(var i = 0; i < maxHechizos; i++){
+		tipo = getNumberFromInput("danTipo"+(i.toString()));
+		if(tipo != 2){
+			//Quitar disabled
+
+			//document.getElementById("danosEle"+(i.toString())).removeAttribute("disabled");
+
+			document.getElementById("resisPor"+(i.toString())).removeAttribute("disabled");
+			document.getElementById("resisFija"+(i.toString())).removeAttribute("disabled");
+		}
+		else{
+			//Poner disabled
+
+			//document.getElementById("danosEle"+(i.toString())).value = 0;
+			//document.getElementById("danosEle"+(i.toString())).setAttribute("disabled", "");
+
+			document.getElementById("resisPor"+(i.toString())).value = 0;
+			document.getElementById("resisPor"+(i.toString())).setAttribute("disabled", "");
+			document.getElementById("resisFija"+(i.toString())).value = 0;
+			document.getElementById("resisFija"+(i.toString())).setAttribute("disabled", "");
+		}
+	}
 }
 
 window.addEventListener("resize", cambioDeTamano);
+

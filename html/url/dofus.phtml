@@ -1,5 +1,5 @@
 <?php
-$cantidadHechizos = 4;
+$cantidadHechizos = 2;
 $maxHechizos = 5;
 ?>
 
@@ -18,17 +18,18 @@ $maxHechizos = 5;
 									<label>Cantidad de hechizos:</label>
 								</td>
 								<td class="sin-bordes">
-									<input class="form-control" type="number" name="cantidadHechizos" id="cantidadHechizos" onclick="cambiarCantidadHechizos()" min="1" max="<?php echo $maxHechizos; ?>" value="<?php echo $cantidadHechizos; ?>" >
+									<input class="form-control" type="number" name="cantidadHechizos" id="cantidadHechizos" onchange="cambiarCantidadHechizos()" min="1" max="<?php echo $maxHechizos; ?>" value="<?php echo $cantidadHechizos; ?>" >
 								</td>
 							</tr>
 						</table>
+						<input class="form-control" hidden type="number" name="maxHechizos" id="maxHechizos" value="<?php echo $maxHechizos; ?>" >
 						<br>
 						<table>
 							<tr>
 								<th></th>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo "<th";
+									echo "<th id='colHechizo".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -38,11 +39,33 @@ $maxHechizos = 5;
 							</tr>
 							<tr>
 								<td>
+									<p>Tipo de daño</p>
+								</td>
+								
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<td id='colDanTipo".$i."'";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<select class="form-control" name="danTipo'.$i.'" id="danTipo'.$i.'" onclick="cambiarTipoDano()">
+											<option value="0">Daño</option>
+											<option value="1">Robo de vida</option>
+											<option value="2">PdV devueltos*</option>
+										</select>
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>
 									<p>Daño minimo del hechizo</p>
 								</td>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colDanMin".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -59,7 +82,7 @@ $maxHechizos = 5;
 								</td>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colDanMax".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -76,7 +99,7 @@ $maxHechizos = 5;
 								</td>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colElemento".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -91,17 +114,21 @@ $maxHechizos = 5;
 								<td>
 									<p>Potencia</p>
 								</td>
-								<td  <?php echo 'colspan="'.$maxHechizos.'"'; ?> >
+								<td id='colPot' <?php echo 'colspan="'.$maxHechizos.'"'; ?> >
 									<input class="form-control" type="number" name="pot" id="pot" value="0" >
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<p>Daños</p>
+									<p>Daños generales</p>
 								</td>
-								<?php
+								<td id='colDanos' <?php echo 'colspan="'.$maxHechizos.'"'; ?> >
+									<input class="form-control" type="number" name="danos" id="danos" value="0" >
+								</td>
+								
+								<?php /*
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colDanos".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -109,7 +136,7 @@ $maxHechizos = 5;
 										<input class="form-control" type="number" name="danos'.$i.'" id="danos'.$i.'" value="0" >
 									</td>
 									';
-								}
+								} */
 								?>
 							</tr>
 							<tr>
@@ -118,7 +145,7 @@ $maxHechizos = 5;
 								</td>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colDanosEle".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -129,11 +156,12 @@ $maxHechizos = 5;
 								}
 								?>
 							</tr>
+
 							<tr>
 								<?php
-								for($i=0; $i < $maxHechizos + 1; $i++){ 
-									echo '<td';
-									if($i > $cantidadHechizos){
+								for($i=-1; $i < $maxHechizos + 1; $i++){ 
+									echo "<td id='colEspacio1_".$i."'";
+									if($i + 1 > $cantidadHechizos){
 										echo " hidden";
 									}
 									echo '><br><br></td>';
@@ -145,7 +173,7 @@ $maxHechizos = 5;
 								<td>Resistencia % enemigo</td>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colResisPor".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -160,7 +188,7 @@ $maxHechizos = 5;
 								<td>Resistencia fija enemigo</td>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colResisFija".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -172,22 +200,83 @@ $maxHechizos = 5;
 								?>
 							</tr>
 
+						</table>
+						<br>
+						<p>*En el caso de <i>PdV devueltos</i>, poner la <i>Inteligencia</i> del usuario en <i>Elemento</i> y las <i>Curas</i> en <i>Daños elementales</i>. La <i>Potencia</i> y los <i>Daños generales</i> no afectan a este calculo.</p>
+						<br>
+						<button class="btn btn-primary" value="calcularDanos" onclick="calcularDanos()">Calcular</button>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 95%;padding: 00px;"';} ?> >
+				<div class="panel-heading">
+					<a data-toggle="collapse" href="#collapseResultados">Resultados</a>
+				</div>
+				<div id="collapseResultados" class="panel-collapse collapse">
+					<div class="panel-body">
+						<table>
+							<tr>
+								<th></th>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<th id='col2Hechizo".$i."'";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo ">Hechizo ".($i+1)."</th>";
+								}
+								?>
+							</tr>
+
+							<tr>
+								<td>Daño minimo sin resistencias</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<td id='colDanosMinSinResis".$i."'";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<p class="form-control" name="danosMinSinResis'.$i.'" id="danosMinSinResis'.$i.'"></p>
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>Daño maximo sin resistencias</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<td id='colDanosMaxSinResis".$i."'";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<p class="form-control" name="danosMaxSinResis'.$i.'" id="danosMaxSinResis'.$i.'"></p>
+									</td>
+									';
+								}
+								?>
+							</tr>
+
 							<tr>
 								<?php
-								for($i=0; $i < $maxHechizos + 1; $i++){ 
-									echo '<td';
-									if($i > $cantidadHechizos){
+								for($i=-1; $i < $maxHechizos + 1; $i++){ 
+									echo "<td id='colEspacio4_".$i."'";
+									if($i + 1 > $cantidadHechizos){
 										echo " hidden";
 									}
 									echo '><br><br></td>';
 								}
 								?>
 							</tr>
+
 							<tr>
-								<td>Daño total minimo</td>
+								<td>Daño minimo con resistencias</td>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colDanosTotalMin".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -199,10 +288,10 @@ $maxHechizos = 5;
 								?>
 							</tr>
 							<tr>
-								<td>Daño total maximo</td>
+								<td>Daño maximo con resistencias</td>
 								<?php
 								for($i=0; $i < $maxHechizos; $i++){ 
-									echo '<td';
+									echo "<td id='colDanosTotalMax".$i."'";
 									if($i >= $cantidadHechizos){
 										echo " hidden";
 									}
@@ -213,12 +302,165 @@ $maxHechizos = 5;
 								}
 								?>
 							</tr>
+
+							<tr>
+								<?php
+								for($i = -1; $i < $maxHechizos + 1; $i++){ 
+									echo "<td id='colEspacio3_".$i."'";
+									if($i + 1 > $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '><br><br></td>';
+								}
+								?>
+							</tr>
+
+							<tr>
+								<td>Vida minima robada</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<td id='colVidaRobadaMin".$i."'";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<p class="form-control" name="vidaRobadaMin'.$i.'" id="vidaRobadaMin'.$i.'"></p>
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>Vida maxima robada</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<td id='colVidaRobadaMax".$i."'";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<p class="form-control" name="vidaRobadaMax'.$i.'" id="vidaRobadaMax'.$i.'"></p>
+									</td>
+									';
+								}
+								?>
+							</tr>
+
+							<tr>
+								<td>PdV devueltos minimos</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<td id='colPdVMin".$i."'";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<p class="form-control" name="pdvMin'.$i.'" id="pdvMin'.$i.'"></p>
+									</td>
+									';
+								}
+								?>
+							</tr>
+							<tr>
+								<td>PdV devueltos maxmios</td>
+								<?php
+								for($i=0; $i < $maxHechizos; $i++){ 
+									echo "<td id='colPdVMax".$i."'";
+									if($i >= $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '>
+										<p class="form-control" name="pdvMax'.$i.'" id="pdvMax'.$i.'"></p>
+									</td>
+									';
+								}
+								?>
+							</tr>
+
+							<tr>
+								<?php
+								for($i = -1; $i < $maxHechizos + 1; $i++){ 
+									echo "<td id='colEspacio5_".$i."'";
+									if($i + 1 > $cantidadHechizos){
+										echo " hidden";
+									}
+									echo '><br><br></td>';
+								}
+								?>
+							</tr>
+
+							<tr>
+								<td>
+									<br><br>
+								</td>
+								<td colspan="<?php echo $maxHechizos; ?>">
+									<br><br>
+								</td>
+							</tr>
+
+							<tr>
+								<td>Daño minimo sumado</td>
+								<td id="colDanoMinSum" colspan="<?php echo $maxHechizos; ?>">
+									<p class="form-control" name="danoMinSum" id="danoMinSum"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>Daño maximo sumado</td>
+								<td id="colDanoMaxSum" colspan="<?php echo $maxHechizos; ?>">
+									<p class="form-control" name="danoMaxSum" id="danoMaxSum"></p>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<br><br>
+								</td>
+								<td colspan="<?php echo $maxHechizos; ?>">
+									<br><br>
+								</td>
+							</tr>
+
+							<tr>
+								<td>Robo minimo sumado</td>
+								<td id="colRoboMinSum" colspan="<?php echo $maxHechizos; ?>">
+									<p class="form-control" name="roboMinSum" id="roboMinSum"></p>
+								</td>
+							</tr>
+							<tr>
+								<td><p>Robo maximo sumado</p></td>
+								<td id="colRoboMaxSum" colspan="<?php echo $maxHechizos; ?>">
+									<p class="form-control" name="roboMaxSum" id="roboMaxSum"></p>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<br><br>
+								</td>
+								<td colspan="<?php echo $maxHechizos; ?>">
+									<br><br>
+								</td>
+							</tr>
+
+							<tr>
+								<td>PdV devueltos minimos sumado</td>
+								<td id="colPdVMinSum" colspan="<?php echo $maxHechizos; ?>">
+									<p class="form-control" name="pdvMinSum" id="pdvMinSum"></p>
+								</td>
+							</tr>
+							<tr>
+								<td>PdV devueltos maximos sumado</td>
+								<td id="colRoboMaxSum" colspan="<?php echo $maxHechizos; ?>">
+									<p class="form-control" name="pdvMaxSum" id="pdvMaxSum"></p>
+								</td>
+							</tr>
+
 						</table>
-						<br>
-						<button class="btn btn-primary" value="calcularDanos" onclick="calcularDanos()">Calcular</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+							
