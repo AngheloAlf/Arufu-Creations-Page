@@ -37,6 +37,5 @@ else{
 }
 
 include ('includes/footer.phtml');
-
 ?>
 

@@ -187,21 +187,51 @@ function crearCuenta(){
 }
 
 function easter_eggColor(){
-	document.getElementById("easter_egg").style.backgroundColor = "white";
-	document.getElementById("easter_egg").style.backgroundImage = "";
-	document.getElementById("easter_egg2").style.opacity = "1.0";
-	document.getElementById("easter_egg3").style.opacity = "1.0";
-	document.getElementById("easter_egg4").style.opacity = "1.0";
-	document.getElementById("easter_egg5").style.opacity = "1.0";
+	var easter_egg = document.getElementById("easter_egg");
+	var easter_egg2 = document.getElementById("easter_egg2");
+	var easter_egg3 = document.getElementById("easter_egg3");
+	var easter_egg4 = document.getElementById("easter_egg4");
+	var easter_egg5 = document.getElementById("easter_egg5");
+	if(!(easter_egg === null)){
+		easter_egg.style.backgroundColor = "white";
+		easter_egg.style.backgroundImage = "";
+	}
+	if(!(easter_egg2 === null)){
+		easter_egg2.style.opacity = "1.0";
+	}
+	if(!(easter_egg3 === null)){
+		easter_egg3.style.opacity = "1.0";
+	}
+	if(!(easter_egg4 === null)){
+		easter_egg4.style.opacity = "1.0";
+	}
+	if(!(easter_egg5 === null)){
+		easter_egg5.style.opacity = "1.0";
+	}
 }
 
 function easter_eggImage(){
-	document.getElementById("easter_egg").style.backgroundImage = "url('resources/konga.gif')";
-	document.getElementById("easter_egg").style.backgroundSize = "70px 70px";
-	document.getElementById("easter_egg2").style.opacity = "0.6";
-	document.getElementById("easter_egg3").style.opacity = "0.7";
-	document.getElementById("easter_egg4").style.opacity = "0.7";
-	document.getElementById("easter_egg5").style.opacity = "0.7";
+	var easter_egg = document.getElementById("easter_egg");
+	var easter_egg2 = document.getElementById("easter_egg2");
+	var easter_egg3 = document.getElementById("easter_egg3");
+	var easter_egg4 = document.getElementById("easter_egg4");
+	var easter_egg5 = document.getElementById("easter_egg5");
+	if(!(easter_egg === null)){
+		easter_egg.style.backgroundImage = "url('resources/konga.gif')";
+		easter_egg.style.backgroundSize = "70px 70px";
+	}
+	if(!(easter_egg2 === null)){
+		easter_egg2.style.opacity = "0.6";
+	}
+	if(!(easter_egg3 === null)){
+		easter_egg3.style.opacity = "0.7";
+	}
+	if(!(easter_egg4 === null)){
+		easter_egg4.style.opacity = "0.7";
+	}
+	if(!(easter_egg5 === null)){
+		easter_egg5.style.opacity = "0.7";
+	}
 }
 
 function buscarConGoogle(){
@@ -283,16 +313,24 @@ function generarTablaFibonacci(){
 
 function abrirSidenav(){
 	var sidenav = document.getElementById("sidenav");
+	if(sidenav === null){
+		return false;
+	}
 	sidenav.style.display = "block";
 	for(var i = 0; i < sidenav.classList.length; i++){
 		if("mobile" == sidenav.classList[i]){
 			sidenav.style.width = "100%";
 		}
 	}
-
+	return true;
 }
 function cerrarSidenav(){
-	document.getElementById("sidenav").style.display = "none";
+	var sidenav = document.getElementById("sidenav");
+	if(sidenav === null){
+		return false;
+	}
+	sidenav.style.display = "none";
+	return true;
 }
 
 function cambioDeTamano(){
@@ -316,7 +354,7 @@ function revisarClavesOnTheFly(){
 }
 
 function testIfNumber(string){
-	return /^[0-9]+$/.test(string);
+	return /^\-?[0-9]+$/.test(string);
 }
 
 function getNumberFromInput(Id){

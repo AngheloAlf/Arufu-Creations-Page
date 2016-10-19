@@ -66,7 +66,7 @@ else{
 						if(!$error){
 							$mensaje = "Abonado correctamente.";
 							if($monto > 0){
-								$mensaje .= "\\nHa sobrado $".$monto;
+								$mensaje .= "\\nHa sobrado $".$monto.".";
 							}
 							jsAlert($mensaje);
 						}
@@ -221,7 +221,7 @@ else{
 								<br>
 								<?php 
 								if(isset($monto) && $monto > 0){
-									echo "<p>Ha sobrado $".$monto." del ultimo abono</p><br>";
+									echo "<p>Ha sobrado $".$monto." del ultimo abono.</p><br>";
 								}
 								?>
 								<button class="btn btn-primary" id="boton" name="boton" value="pagarDeuda">Abonar deuda</button>

@@ -212,7 +212,7 @@ function imprimirNavData($arreglo){
 			else{
 				$navegacion .= "false";
 			}
-			$navegacion .= '">[WIP] ';
+			$navegacion .= '">[WIP]';
 			
 		}
 		else{
