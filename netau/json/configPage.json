@@ -1,6 +1,9 @@
 {
 	"hostPage":
-		"http:\/\/arufucreations.netau.net\/\/",
+		"http:\/\/arufucreations.netau.net",
+
+	"subFolder":
+		"\/",
 		
 	"permiteCuentas":
 		true

@@ -1,6 +1,9 @@
 {
 	"hostPage":
-		"http:\/\/alumnos.inf.utfsm.cl\/~ancarvaj\/",
+		"http:\/\/alumnos.inf.utfsm.cl",
+
+	"subFolder":
+		"\/~ancarvaj",
 		
 	"permiteCuentas":
 		false

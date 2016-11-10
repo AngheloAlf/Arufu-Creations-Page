@@ -31,8 +31,9 @@ if(isset($_POST["user"]) && isset($_POST["pass"]) && $_POST["user"] && $_POST["p
 
 		if(isset($_POST["mantenerSesion"]) && isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
 			$caducidad =  time() + (60 * 60 * 24 * 28);
-			$_SESSION["setearCookies"][] = array("iduser", $resultado[0], $caducidad, $_SESSION['configPage']['hostPage']);
-			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $_SESSION['configPage']['hostPage']);
+			$paginaPrincipal = $_SESSION['configPage']['hostPage'].$_SESSION['configPage']['subFolder'];
+			$_SESSION["setearCookies"][] = array("iduser", $resultado[0], $caducidad, $paginaPrincipal);
+			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $paginaPrincipal);
 		}
 	}
 	else{

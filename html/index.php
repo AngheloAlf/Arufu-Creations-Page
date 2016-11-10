@@ -1,4 +1,8 @@
-﻿<?php
+<?php
+
+//ErrorDocument 404 http://localhost/arufucreations/?p=404
+//FallbackResource /arufucreations/index.php
+
 require_once("sv/common.php");
 require ('sv/initPage.php');
 include ('includes/head.phtml');
@@ -36,6 +40,37 @@ else{
 	require ('url/home.phtml');
 }
 
-include ('includes/footer.phtml');
-?>
+/*
+echo "HTTP_HOST ". $_SERVER['HTTP_HOST'];
+echo "<br>";
+echo "REQUEST_URI ".$_SERVER['REQUEST_URI'];
+echo "<br>";
+echo stristr($_SERVER['REQUEST_URI'], $_SESSION["configPage"]["subFolder"]);
+echo "<br>";
+$a = stripos($_SERVER['REQUEST_URI'], $_SESSION["configPage"]["subFolder"]);
+echo $a;
+echo "<br>";
+print_r(explode("/", substr($_SERVER['REQUEST_URI'], strlen( $_SESSION["configPage"]["subFolder"]))));
+echo "<br>";
+print_r(explode("/", $_SERVER['REQUEST_URI']));
+echo "<br>";
+print_r(explode("/", $_SESSION["configPage"]["subFolder"]));
+echo "<br>";
+if(count(explode("/", $_SERVER['REQUEST_URI'])) > count(explode("/", $_SESSION["configPage"]["subFolder"]))){
+	if(explode("/", $_SERVER['REQUEST_URI'])[count(explode("/", $_SESSION["configPage"]["subFolder"]))] != ""){
+		$pagina = explode("/", $_SERVER['REQUEST_URI'])[count(explode("/", $_SESSION["configPage"]["subFolder"]))]
+		echo "Cargar ".$pagina;
+	}
+	else{
+		echo "Cargar home";
+	}
+}
+else{
+	echo "cargar home";
+}
+*/
+//print_r(parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
 
+include ('includes/footer.phtml');
+
+?>

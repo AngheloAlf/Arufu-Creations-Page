@@ -1,6 +1,9 @@
 {
 	"hostPage":
-		"http:\/\/localhost\/arufucreations\/",
+		"http:\/\/localhost",
+
+	"subFolder":
+		"\/arufucreations",
 		
 	"permiteCuentas":
 		true

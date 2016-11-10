@@ -226,10 +226,6 @@ function imprimirNavData($arreglo){
 function desSetearCookie($cookieName, $hostPage){
 	$caducidad = time() - (3600);
 	$_SESSION["setearCookies"][] = array($cookieName, "", $caducidad, $hostPage);
-	/*if(!isset($_SESSION["js"])){
-		$cookieDesabilitar = 'document.cookie = "'.$cookieName.'=; expires=Thu, 01 Jan 1970 00:00:00 UTC";';
-		scriptJS($cookieDesabilitar);
-	}*/
 	if($_SESSION["js"]){
 		$cookieDesabilitar = 'document.cookie = "'.$cookieName.'=; expires=Thu, 01 Jan 1970 00:00:00 UTC";';
 		scriptJS($cookieDesabilitar);

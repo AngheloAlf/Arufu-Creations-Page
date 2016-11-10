@@ -12,8 +12,10 @@ $_SESSION['configPage'] = cargarJson('configPage');
 
 //print_r(cargarJson('loginData'));
 
+$paginaPrincipal = $_SESSION['configPage']['hostPage'].$_SESSION['configPage']['subFolder'];
+
 if(count($_COOKIE) == 0){
-	setcookie("testCookie", "testCookie",  time() + (60 * 60), $_SESSION['configPage']['hostPage']);
+	setcookie("testCookie", "testCookie",  time() + (60 * 60), $paginaPrincipal);
 }
 
 if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
@@ -75,15 +77,15 @@ if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
 			$_SESSION['verWip'] = ($logeandoCookies[4] == 1);
 
 			$caducidad =  time() + (60 * 60 * 24 * 28);
-			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $_SESSION['configPage']['hostPage']);
+			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $paginaPrincipal);
 			
 			unset($sql2);
 			unset($codeData);
 		}
 		else{
 			jsAlert("Se ha detectado un error con el inicio de sesion automatico.\nQuizas se produjo porque iniciaste sesión en otro computador o navegador.");
-			desSetearCookie("iduser", $_SESSION['configPage']['hostPage']);
-			desSetearCookie("usercode", $_SESSION['configPage']['hostPage']);
+			desSetearCookie("iduser", $paginaPrincipal);
+			desSetearCookie("usercode", $paginaPrincipal);
 		}
 		unset($sql);
 		unset($logeandoCookies);

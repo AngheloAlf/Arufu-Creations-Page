@@ -5,8 +5,9 @@ unset($_SESSION["admin"]);
 unset($_SESSION['verWip']);
 unset($_SESSION["userData"]);
 if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
-	desSetearCookie("iduser", $_SESSION['configPage']['hostPage']);
-	desSetearCookie("usercode", $_SESSION['configPage']['hostPage']);
+	$paginaPrincipal = $_SESSION['configPage']['hostPage'].$_SESSION['configPage']['subFolder'];
+	desSetearCookie("iduser", $paginaPrincipal);
+	desSetearCookie("usercode", $paginaPrincipal);
 }
 redireccionarA("?p=home");
 ?>
