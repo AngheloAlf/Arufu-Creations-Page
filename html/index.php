@@ -39,8 +39,8 @@ elseif(isset($_GET['p']) && !empty($_GET['p'])){ //Carga paginas con front-end
 else{
 	require ('url/home.phtml');
 }
-
 /*
+
 echo "HTTP_HOST ". $_SERVER['HTTP_HOST'];
 echo "<br>";
 echo "REQUEST_URI ".$_SERVER['REQUEST_URI'];
@@ -58,8 +58,15 @@ print_r(explode("/", $_SESSION["configPage"]["subFolder"]));
 echo "<br>";
 if(count(explode("/", $_SERVER['REQUEST_URI'])) > count(explode("/", $_SESSION["configPage"]["subFolder"]))){
 	if(explode("/", $_SERVER['REQUEST_URI'])[count(explode("/", $_SESSION["configPage"]["subFolder"]))] != ""){
-		$pagina = explode("/", $_SERVER['REQUEST_URI'])[count(explode("/", $_SESSION["configPage"]["subFolder"]))]
+		$pagina = explode("/", $_SERVER['REQUEST_URI'])[count(explode("/", $_SESSION["configPage"]["subFolder"]))];
 		echo "Cargar ".$pagina;
+		$pagina = $_SESSION["configPage"]["subFolder"]."/url/".$pagina.".phtml";
+		echo "<br>";
+		echo $pagina;
+		if(file_exists($pagina)){
+			echo "cargado";
+			require ($pagina);
+		}
 	}
 	else{
 		echo "Cargar home";

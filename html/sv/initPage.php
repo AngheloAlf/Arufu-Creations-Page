@@ -76,6 +76,8 @@ if(isset($_SESSION["cookiesActivas"]) && $_SESSION["cookiesActivas"]){
 			$_SESSION["nav"] = $logeandoCookies[2];
 			$_SESSION['verWip'] = ($logeandoCookies[4] == 1);
 
+			$_SESSION["userData"] = array('id' => $resultado[0], 'user' => $resultado[1], "admin" => $resultado[2], "nav" => $resultado[3], 'verWip' => $verWip);
+
 			$caducidad =  time() + (60 * 60 * 24 * 28);
 			$_SESSION["setearCookies"][] = array("usercode", $codeData[0], $caducidad, $paginaPrincipal);
 			
