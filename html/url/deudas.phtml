@@ -53,7 +53,8 @@ else{
 							else{
 								$abonamiento = $deuda;
 							}
-							$sql2 = "UPDATE registro_deudas SET monto_abonado='{$abonamiento}' WHERE id_deuda='{$arreglo[$i][0]}'";
+							$fecha = obtenerFechaHora();
+							$sql2 = "UPDATE registro_deudas SET monto_abonado='{$abonamiento}', ultimo_abono='{$fecha}' WHERE id_deuda='{$arreglo[$i][0]}'";
 							if($dbconn->query($sql2)){
 								$monto = $monto - ($abonamiento - $abonado);
 							}
