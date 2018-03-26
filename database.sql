@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-09-13 22:29:02
+Date: 2018-03-26 10:15:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -67,7 +67,7 @@ CREATE TABLE `registro_deudas` (
   `monto_abonado` float NOT NULL DEFAULT '0',
   `ultimo_abono` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id_deuda`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=145 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of registro_deudas
@@ -107,78 +107,114 @@ INSERT INTO `registro_deudas` VALUES ('33', '5', '2', '2016-10-10 20:50:03', '20
 INSERT INTO `registro_deudas` VALUES ('34', '5', '3', '2016-10-10 20:50:03', '2016-10-10 00:00:00', 'internet', 'Octubre', '4574', '4574', '2017-04-17 18:11:44');
 INSERT INTO `registro_deudas` VALUES ('35', '5', '4', '2016-10-12 19:36:47', '2016-10-10 00:00:00', 'internet', 'Octubre', '4574', '4574', '2016-10-12 19:36:47');
 INSERT INTO `registro_deudas` VALUES ('36', '5', '5', '2016-10-10 20:50:03', '2016-10-10 00:00:00', 'internet', 'Octubre', '4574', '4574', '2016-10-17 20:08:06');
-INSERT INTO `registro_deudas` VALUES ('37', '5', '1', '2017-04-17 18:13:16', '2017-04-27 00:00:00', 'agua', 'Marzo', '4665', '0', null);
+INSERT INTO `registro_deudas` VALUES ('37', '5', '1', '2017-04-17 18:13:16', '2017-04-27 00:00:00', 'agua', 'Marzo', '4665', '4665', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('38', '5', '2', '2017-04-17 18:13:16', '2017-04-27 00:00:00', 'agua', 'Marzo', '4665', '4665', null);
 INSERT INTO `registro_deudas` VALUES ('39', '5', '3', '2017-04-17 18:13:16', '2017-04-27 00:00:00', 'agua', 'Marzo', '4665', '4665', '2017-04-23 20:23:58');
-INSERT INTO `registro_deudas` VALUES ('40', '5', '1', '2017-04-17 18:20:28', '2017-04-17 00:00:00', 'internet', 'Marzo', '5955', '0', null);
+INSERT INTO `registro_deudas` VALUES ('40', '5', '1', '2017-04-17 18:20:28', '2017-04-17 00:00:00', 'internet', 'Marzo', '5955', '5955', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('41', '5', '2', '2017-04-17 18:20:28', '2017-04-17 00:00:00', 'internet', 'Marzo', '5955', '5955', null);
 INSERT INTO `registro_deudas` VALUES ('42', '5', '3', '2017-04-17 18:20:28', '2017-04-17 00:00:00', 'internet', 'Marzo', '5955', '5955', '2017-04-23 20:23:59');
-INSERT INTO `registro_deudas` VALUES ('43', '5', '1', '2017-04-17 18:21:10', '2017-04-17 00:00:00', 'gas', 'Marzo', '3920', '0', null);
+INSERT INTO `registro_deudas` VALUES ('43', '5', '1', '2017-04-17 18:21:10', '2017-04-17 00:00:00', 'gas', 'Marzo', '3920', '3920', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('44', '5', '2', '2017-04-17 18:21:10', '2017-04-17 00:00:00', 'gas', 'Marzo', '3920', '3920', null);
 INSERT INTO `registro_deudas` VALUES ('45', '5', '3', '2017-04-17 18:21:10', '2017-04-17 00:00:00', 'gas', 'Marzo', '3920', '3920', '2017-04-23 20:23:59');
-INSERT INTO `registro_deudas` VALUES ('46', '5', '1', '2017-04-17 18:21:52', '2017-04-05 00:00:00', 'luz', 'Marzo', '4578', '0', null);
+INSERT INTO `registro_deudas` VALUES ('46', '5', '1', '2017-04-17 18:21:52', '2017-04-05 00:00:00', 'luz', 'Marzo', '4578', '4578', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('47', '5', '2', '2017-04-17 18:21:52', '2017-04-05 00:00:00', 'luz', 'Marzo', '4578', '4578', null);
 INSERT INTO `registro_deudas` VALUES ('48', '5', '3', '2017-04-17 18:21:52', '2017-04-05 00:00:00', 'luz', 'Marzo', '4578', '4578', '2017-04-26 21:33:36');
-INSERT INTO `registro_deudas` VALUES ('49', '5', '1', '2017-04-26 21:32:10', '2017-05-05 00:00:00', 'luz', 'Abril', '5430', '0', null);
+INSERT INTO `registro_deudas` VALUES ('49', '5', '1', '2017-04-26 21:32:10', '2017-05-05 00:00:00', 'luz', 'Abril', '5430', '5430', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('50', '5', '2', '2017-04-26 21:32:10', '2017-05-05 00:00:00', 'luz', 'Abril', '5430', '5430', null);
 INSERT INTO `registro_deudas` VALUES ('51', '5', '3', '2017-04-26 21:32:10', '2017-05-05 00:00:00', 'luz', 'Abril', '5430', '5430', null);
-INSERT INTO `registro_deudas` VALUES ('52', '5', '1', '2017-04-26 21:32:33', '2017-04-26 00:00:00', 'internet', 'Abril', '6498', '0', null);
+INSERT INTO `registro_deudas` VALUES ('52', '5', '1', '2017-04-26 21:32:33', '2017-04-26 00:00:00', 'internet', 'Abril', '6498', '6498', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('53', '5', '2', '2017-04-26 21:32:33', '2017-04-26 00:00:00', 'internet', 'Abril', '6498', '6498', null);
 INSERT INTO `registro_deudas` VALUES ('54', '5', '3', '2017-04-26 21:32:33', '2017-04-26 00:00:00', 'internet', 'Abril', '6498', '6498', null);
-INSERT INTO `registro_deudas` VALUES ('55', '5', '1', '2017-05-05 10:28:59', '2017-05-18 00:00:00', 'gas', 'Abril', '3475', '0', null);
+INSERT INTO `registro_deudas` VALUES ('55', '5', '1', '2017-05-05 10:28:59', '2017-05-18 00:00:00', 'gas', 'Abril', '3475', '3475', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('56', '5', '2', '2017-05-05 10:28:59', '2017-05-18 00:00:00', 'gas', 'Abril', '3475', '3475', null);
 INSERT INTO `registro_deudas` VALUES ('57', '5', '3', '2017-05-05 10:28:59', '2017-05-18 00:00:00', 'gas', 'Abril', '3475', '3475', null);
-INSERT INTO `registro_deudas` VALUES ('58', '5', '1', '2017-05-11 15:59:57', '2017-05-26 00:00:00', 'agua', 'Abril', '4985', '0', null);
+INSERT INTO `registro_deudas` VALUES ('58', '5', '1', '2017-05-11 15:59:57', '2017-05-26 00:00:00', 'agua', 'Abril', '4985', '4985', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('59', '5', '2', '2017-05-11 15:59:57', '2017-05-26 00:00:00', 'agua', 'Abril', '4985', '4985', null);
 INSERT INTO `registro_deudas` VALUES ('60', '5', '3', '2017-05-11 15:59:57', '2017-05-26 00:00:00', 'agua', 'Abril', '4985', '4985', null);
-INSERT INTO `registro_deudas` VALUES ('61', '5', '1', '2017-05-26 15:09:30', '2017-05-26 00:00:00', 'internet', 'Mayo', '6498', '0', null);
+INSERT INTO `registro_deudas` VALUES ('61', '5', '1', '2017-05-26 15:09:30', '2017-05-26 00:00:00', 'internet', 'Mayo', '6498', '6498', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('62', '5', '2', '2017-05-26 15:09:30', '2017-05-26 00:00:00', 'internet', 'Mayo', '6498', '6498', null);
 INSERT INTO `registro_deudas` VALUES ('63', '5', '3', '2017-05-26 15:09:30', '2017-05-26 00:00:00', 'internet', 'Mayo', '6498', '6498', null);
-INSERT INTO `registro_deudas` VALUES ('64', '5', '1', '2017-05-26 15:10:17', '2017-06-06 00:00:00', 'luz', 'Mayo', '6348', '0', null);
+INSERT INTO `registro_deudas` VALUES ('64', '5', '1', '2017-05-26 15:10:17', '2017-06-06 00:00:00', 'luz', 'Mayo', '6348', '6348', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('65', '5', '2', '2017-05-26 15:10:17', '2017-06-06 00:00:00', 'luz', 'Mayo', '6348', '6348', null);
 INSERT INTO `registro_deudas` VALUES ('66', '5', '3', '2017-05-26 15:10:17', '2017-06-06 00:00:00', 'luz', 'Mayo', '6348', '6348', null);
-INSERT INTO `registro_deudas` VALUES ('67', '5', '1', '2017-06-03 21:09:29', '2017-06-16 00:00:00', 'gas', 'Mayo', '3243', '0', null);
+INSERT INTO `registro_deudas` VALUES ('67', '5', '1', '2017-06-03 21:09:29', '2017-06-16 00:00:00', 'gas', 'Mayo', '3243', '3243', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('68', '5', '2', '2017-06-03 21:09:29', '2017-06-16 00:00:00', 'gas', 'Mayo', '3243', '3243', null);
 INSERT INTO `registro_deudas` VALUES ('69', '5', '3', '2017-06-03 21:09:29', '2017-06-16 00:00:00', 'gas', 'Mayo', '3243', '3243', null);
-INSERT INTO `registro_deudas` VALUES ('70', '5', '1', '2017-07-01 11:42:03', '2017-06-27 00:00:00', 'agua', 'Junio', '4647', '0', null);
+INSERT INTO `registro_deudas` VALUES ('70', '5', '1', '2017-07-01 11:42:03', '2017-06-27 00:00:00', 'agua', 'Junio', '4647', '4647', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('71', '5', '2', '2017-07-01 11:42:03', '2017-06-27 00:00:00', 'agua', 'Junio', '4647', '4647', null);
 INSERT INTO `registro_deudas` VALUES ('72', '5', '3', '2017-07-01 11:42:03', '2017-06-27 00:00:00', 'agua', 'Junio', '4647', '4647', null);
-INSERT INTO `registro_deudas` VALUES ('73', '5', '1', '2017-07-01 11:42:34', '2017-07-01 00:00:00', 'internet', 'Junio', '6498', '0', null);
+INSERT INTO `registro_deudas` VALUES ('73', '5', '1', '2017-07-01 11:42:34', '2017-07-01 00:00:00', 'internet', 'Junio', '6498', '6498', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('74', '5', '2', '2017-07-01 11:42:34', '2017-07-01 00:00:00', 'internet', 'Junio', '6498', '6498', null);
 INSERT INTO `registro_deudas` VALUES ('75', '5', '3', '2017-07-01 11:42:34', '2017-07-01 00:00:00', 'internet', 'Junio', '6498', '6498', null);
-INSERT INTO `registro_deudas` VALUES ('76', '5', '1', '2017-07-01 11:43:19', '2017-07-06 00:00:00', 'luz', 'Junio', '6831', '0', null);
+INSERT INTO `registro_deudas` VALUES ('76', '5', '1', '2017-07-01 11:43:19', '2017-07-06 00:00:00', 'luz', 'Junio', '6831', '6831', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('77', '5', '2', '2017-07-01 11:43:19', '2017-07-06 00:00:00', 'luz', 'Junio', '6831', '6831', null);
 INSERT INTO `registro_deudas` VALUES ('78', '5', '3', '2017-07-01 11:43:19', '2017-07-06 00:00:00', 'luz', 'Junio', '6831', '6831', null);
-INSERT INTO `registro_deudas` VALUES ('79', '5', '1', '2017-07-14 14:44:29', '2017-07-15 00:00:00', 'gas', 'Junio', '3588', '0', null);
+INSERT INTO `registro_deudas` VALUES ('79', '5', '1', '2017-07-14 14:44:29', '2017-07-15 00:00:00', 'gas', 'Junio', '3588', '3588', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('80', '5', '2', '2017-07-14 14:44:29', '2017-07-15 00:00:00', 'gas', 'Junio', '3588', '3588', null);
 INSERT INTO `registro_deudas` VALUES ('81', '5', '3', '2017-07-14 14:44:29', '2017-07-15 00:00:00', 'gas', 'Junio', '3588', '3588', null);
-INSERT INTO `registro_deudas` VALUES ('82', '5', '1', '2017-07-14 15:10:05', '2017-07-26 00:00:00', 'agua', 'Julio', '3778', '0', null);
+INSERT INTO `registro_deudas` VALUES ('82', '5', '1', '2017-07-14 15:10:05', '2017-07-26 00:00:00', 'agua', 'Julio', '3778', '3778', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('83', '5', '2', '2017-07-14 15:10:05', '2017-07-26 00:00:00', 'agua', 'Julio', '3778', '3778', null);
 INSERT INTO `registro_deudas` VALUES ('84', '5', '3', '2017-07-14 15:10:05', '2017-07-26 00:00:00', 'agua', 'Julio', '3778', '3778', null);
-INSERT INTO `registro_deudas` VALUES ('85', '5', '1', '2017-08-07 19:32:31', '2017-08-07 00:00:00', 'internet', 'Julio', '6580', '0', null);
+INSERT INTO `registro_deudas` VALUES ('85', '5', '1', '2017-08-07 19:32:31', '2017-08-07 00:00:00', 'internet', 'Julio', '6580', '6580', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('86', '5', '2', '2017-08-07 19:32:31', '2017-08-07 00:00:00', 'internet', 'Julio', '6580', '6580', null);
 INSERT INTO `registro_deudas` VALUES ('87', '5', '3', '2017-08-07 19:32:31', '2017-08-07 00:00:00', 'internet', 'Julio', '6580', '6580', null);
-INSERT INTO `registro_deudas` VALUES ('88', '5', '1', '2017-08-07 19:33:17', '2017-08-16 00:00:00', 'gas', 'Julio', '3523', '0', null);
+INSERT INTO `registro_deudas` VALUES ('88', '5', '1', '2017-08-07 19:33:17', '2017-08-16 00:00:00', 'gas', 'Julio', '3523', '3523', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('89', '5', '2', '2017-08-07 19:33:17', '2017-08-16 00:00:00', 'gas', 'Julio', '3523', '3523', null);
 INSERT INTO `registro_deudas` VALUES ('90', '5', '3', '2017-08-07 19:33:17', '2017-08-16 00:00:00', 'gas', 'Julio', '3523', '3523', null);
-INSERT INTO `registro_deudas` VALUES ('91', '5', '1', '2017-08-07 19:40:13', '2017-08-04 00:00:00', 'luz', 'Julio', '7908', '0', null);
+INSERT INTO `registro_deudas` VALUES ('91', '5', '1', '2017-08-07 19:40:13', '2017-08-04 00:00:00', 'luz', 'Julio', '7908', '7908', '2018-03-26 10:14:28');
 INSERT INTO `registro_deudas` VALUES ('92', '5', '2', '2017-08-07 19:40:13', '2017-08-04 00:00:00', 'luz', 'Julio', '7908', '7908', null);
 INSERT INTO `registro_deudas` VALUES ('93', '5', '3', '2017-08-07 19:40:13', '2017-08-04 00:00:00', 'luz', 'Julio', '7908', '7908', null);
-INSERT INTO `registro_deudas` VALUES ('94', '5', '1', '2017-08-26 21:22:56', '2017-09-07 00:00:00', 'luz', 'Agosto', '4368', '0', null);
-INSERT INTO `registro_deudas` VALUES ('95', '5', '2', '2017-08-26 21:22:56', '2017-09-07 00:00:00', 'luz', 'Agosto', '4368', '277', null);
+INSERT INTO `registro_deudas` VALUES ('94', '5', '1', '2017-08-26 21:22:56', '2017-09-07 00:00:00', 'luz', 'Agosto', '4368', '4368', '2018-03-26 10:14:28');
+INSERT INTO `registro_deudas` VALUES ('95', '5', '2', '2017-08-26 21:22:56', '2017-09-07 00:00:00', 'luz', 'Agosto', '4368', '4368', '2017-10-06 13:58:32');
 INSERT INTO `registro_deudas` VALUES ('96', '5', '3', '2017-08-26 21:22:56', '2017-09-07 00:00:00', 'luz', 'Agosto', '4368', '4368', null);
-INSERT INTO `registro_deudas` VALUES ('97', '5', '1', '2017-08-26 21:23:34', '2017-08-26 00:00:00', 'internet', 'Agosto', '6580', '0', null);
-INSERT INTO `registro_deudas` VALUES ('98', '5', '2', '2017-08-26 21:23:34', '2017-08-26 00:00:00', 'internet', 'Agosto', '6580', '0', null);
+INSERT INTO `registro_deudas` VALUES ('97', '5', '1', '2017-08-26 21:23:34', '2017-08-26 00:00:00', 'internet', 'Agosto', '6580', '6580', '2018-03-26 10:14:28');
+INSERT INTO `registro_deudas` VALUES ('98', '5', '2', '2017-08-26 21:23:34', '2017-08-26 00:00:00', 'internet', 'Agosto', '6580', '6580', '2017-10-06 13:58:32');
 INSERT INTO `registro_deudas` VALUES ('99', '5', '3', '2017-08-26 21:23:34', '2017-08-26 00:00:00', 'internet', 'Agosto', '6580', '6580', null);
-INSERT INTO `registro_deudas` VALUES ('100', '5', '1', '2017-08-26 21:24:04', '2017-08-24 00:00:00', 'agua', 'Agosto', '3944', '0', null);
-INSERT INTO `registro_deudas` VALUES ('101', '5', '2', '2017-08-26 21:24:04', '2017-08-24 00:00:00', 'agua', 'Agosto', '3944', '0', null);
+INSERT INTO `registro_deudas` VALUES ('100', '5', '1', '2017-08-26 21:24:04', '2017-08-24 00:00:00', 'agua', 'Agosto', '3944', '3944', '2018-03-26 10:14:28');
+INSERT INTO `registro_deudas` VALUES ('101', '5', '2', '2017-08-26 21:24:04', '2017-08-24 00:00:00', 'agua', 'Agosto', '3944', '3944', '2017-10-06 13:58:32');
 INSERT INTO `registro_deudas` VALUES ('102', '5', '3', '2017-08-26 21:24:04', '2017-08-24 00:00:00', 'agua', 'Agosto', '3944', '3944', null);
-INSERT INTO `registro_deudas` VALUES ('103', '5', '1', '2017-09-13 22:18:10', '2017-09-15 00:00:00', 'gas', 'Agosto', '4003', '0', null);
-INSERT INTO `registro_deudas` VALUES ('104', '5', '2', '2017-09-13 22:18:10', '2017-09-15 00:00:00', 'gas', 'Agosto', '4003', '0', null);
-INSERT INTO `registro_deudas` VALUES ('105', '5', '3', '2017-09-13 22:18:10', '2017-09-15 00:00:00', 'gas', 'Agosto', '4003', '2529', null);
-INSERT INTO `registro_deudas` VALUES ('106', '5', '1', '2017-09-13 22:19:52', '2017-09-27 00:00:00', 'agua', 'Septiembre', '4689', '0', null);
-INSERT INTO `registro_deudas` VALUES ('107', '5', '2', '2017-09-13 22:19:52', '2017-09-27 00:00:00', 'agua', 'Septiembre', '4689', '0', null);
-INSERT INTO `registro_deudas` VALUES ('108', '5', '3', '2017-09-13 22:19:52', '2017-09-27 00:00:00', 'agua', 'Septiembre', '4689', '0', null);
+INSERT INTO `registro_deudas` VALUES ('103', '5', '1', '2017-09-13 22:18:10', '2017-09-15 00:00:00', 'gas', 'Agosto', '4003', '4003', '2018-03-26 10:14:28');
+INSERT INTO `registro_deudas` VALUES ('104', '5', '2', '2017-09-13 22:18:10', '2017-09-15 00:00:00', 'gas', 'Agosto', '4003', '4003', '2017-10-06 13:58:32');
+INSERT INTO `registro_deudas` VALUES ('105', '5', '3', '2017-09-13 22:18:10', '2017-09-15 00:00:00', 'gas', 'Agosto', '4003', '4003', '2017-09-13 22:44:17');
+INSERT INTO `registro_deudas` VALUES ('106', '5', '1', '2017-09-13 22:19:52', '2017-09-27 00:00:00', 'agua', 'Septiembre', '4689', '4689', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('107', '5', '2', '2017-09-13 22:19:52', '2017-09-27 00:00:00', 'agua', 'Septiembre', '4689', '4689', '2017-10-06 13:58:32');
+INSERT INTO `registro_deudas` VALUES ('108', '5', '3', '2017-09-13 22:19:52', '2017-09-27 00:00:00', 'agua', 'Septiembre', '4689', '4689', '2017-09-13 22:44:17');
+INSERT INTO `registro_deudas` VALUES ('109', '5', '1', '2017-10-06 12:14:56', '2017-10-06 00:00:00', 'internet', 'Septiembre', '6580', '6580', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('110', '5', '2', '2017-10-06 12:14:56', '2017-10-06 00:00:00', 'internet', 'Septiembre', '6580', '6580', '2017-10-25 14:07:00');
+INSERT INTO `registro_deudas` VALUES ('111', '5', '3', '2017-10-06 12:14:56', '2017-10-06 00:00:00', 'internet', 'Septiembre', '6580', '6580', '2017-10-06 14:01:01');
+INSERT INTO `registro_deudas` VALUES ('112', '5', '1', '2017-10-06 12:15:32', '2017-10-18 00:00:00', 'gas', 'Septiembre', '4465', '4465', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('113', '5', '2', '2017-10-06 12:15:32', '2017-10-18 00:00:00', 'gas', 'Septiembre', '4465', '4465', '2017-10-25 14:07:00');
+INSERT INTO `registro_deudas` VALUES ('114', '5', '3', '2017-10-06 12:15:32', '2017-10-18 00:00:00', 'gas', 'Septiembre', '4465', '4465', '2017-10-06 14:01:01');
+INSERT INTO `registro_deudas` VALUES ('115', '5', '1', '2017-10-06 12:16:38', '2017-10-10 00:00:00', 'luz', 'Septiembre', '6476', '6476', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('116', '5', '2', '2017-10-06 12:16:38', '2017-10-10 00:00:00', 'luz', 'Septiembre', '6476', '6476', '2017-10-25 14:07:00');
+INSERT INTO `registro_deudas` VALUES ('117', '5', '3', '2017-10-06 12:16:38', '2017-10-10 00:00:00', 'luz', 'Septiembre', '6476', '6476', '2017-10-24 10:38:47');
+INSERT INTO `registro_deudas` VALUES ('118', '5', '1', '2017-10-24 10:38:31', '2017-10-25 00:00:00', 'agua', 'Octubre', '5809', '5809', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('119', '5', '2', '2017-10-24 10:38:31', '2017-10-25 00:00:00', 'agua', 'Octubre', '5809', '5809', '2017-10-25 14:07:00');
+INSERT INTO `registro_deudas` VALUES ('120', '5', '3', '2017-10-24 10:38:31', '2017-10-25 00:00:00', 'agua', 'Octubre', '5809', '5809', '2017-10-25 10:38:13');
+INSERT INTO `registro_deudas` VALUES ('121', '5', '1', '2017-10-25 10:39:42', '2017-11-07 00:00:00', 'luz', 'Octubre', '4232', '4232', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('122', '5', '2', '2017-10-25 10:39:42', '2017-11-07 00:00:00', 'luz', 'Octubre', '4232', '4232', '2017-11-28 10:25:28');
+INSERT INTO `registro_deudas` VALUES ('123', '5', '3', '2017-10-25 10:39:42', '2017-11-07 00:00:00', 'luz', 'Octubre', '4232', '4232', '2017-11-28 10:26:29');
+INSERT INTO `registro_deudas` VALUES ('124', '5', '1', '2017-11-03 17:56:58', '2017-10-29 00:00:00', 'internet', 'Octubre', '6580', '6580', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('125', '5', '2', '2017-11-03 17:56:58', '2017-10-29 00:00:00', 'internet', 'Octubre', '6580', '6580', '2017-11-28 10:25:28');
+INSERT INTO `registro_deudas` VALUES ('126', '5', '3', '2017-11-03 17:56:58', '2017-10-29 00:00:00', 'internet', 'Octubre', '6580', '6580', '2017-11-28 10:26:29');
+INSERT INTO `registro_deudas` VALUES ('127', '5', '1', '2017-11-03 22:10:39', '2017-11-20 00:00:00', 'gas', 'Octubre', '4675', '4675', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('128', '5', '2', '2017-11-03 22:10:39', '2017-11-20 00:00:00', 'gas', 'Octubre', '4675', '4675', '2017-11-28 10:25:28');
+INSERT INTO `registro_deudas` VALUES ('129', '5', '3', '2017-11-03 22:10:39', '2017-11-20 00:00:00', 'gas', 'Octubre', '4675', '4675', '2017-12-01 21:38:22');
+INSERT INTO `registro_deudas` VALUES ('130', '5', '1', '2017-11-15 19:27:35', '2017-11-27 00:00:00', 'agua', 'Octubre', '4505', '4505', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('131', '5', '2', '2017-11-15 19:27:35', '2017-11-27 00:00:00', 'agua', 'Octubre', '4505', '4505', '2018-03-26 10:14:43');
+INSERT INTO `registro_deudas` VALUES ('132', '5', '3', '2017-11-15 19:27:35', '2017-11-27 00:00:00', 'agua', 'Octubre', '4505', '4505', '2017-12-01 21:38:22');
+INSERT INTO `registro_deudas` VALUES ('133', '5', '1', '2017-11-27 13:28:01', '2017-11-27 00:00:00', 'internet', 'Noviembre', '6580', '6580', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('134', '5', '2', '2017-11-27 13:28:01', '2017-11-27 00:00:00', 'internet', 'Noviembre', '6580', '6580', '2018-03-26 10:14:43');
+INSERT INTO `registro_deudas` VALUES ('135', '5', '3', '2017-11-27 13:28:01', '2017-11-27 00:00:00', 'internet', 'Noviembre', '6580', '6580', '2017-12-01 21:38:22');
+INSERT INTO `registro_deudas` VALUES ('136', '5', '1', '2017-12-01 21:01:16', '2017-12-18 00:00:00', 'gas', 'Noviembre', '3940', '3940', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('137', '5', '2', '2017-12-01 21:01:16', '2017-12-18 00:00:00', 'gas', 'Noviembre', '3940', '3940', '2018-03-26 10:14:43');
+INSERT INTO `registro_deudas` VALUES ('138', '5', '3', '2017-12-01 21:01:16', '2017-12-18 00:00:00', 'gas', 'Noviembre', '3940', '3940', '2017-12-01 21:38:22');
+INSERT INTO `registro_deudas` VALUES ('139', '5', '1', '2017-12-01 21:01:52', '2017-12-07 00:00:00', 'luz', 'Noviembre', '5956', '5956', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('140', '5', '2', '2017-12-01 21:01:52', '2017-12-07 00:00:00', 'luz', 'Noviembre', '5956', '5956', '2018-03-26 10:14:43');
+INSERT INTO `registro_deudas` VALUES ('141', '5', '3', '2017-12-01 21:01:52', '2017-12-07 00:00:00', 'luz', 'Noviembre', '5956', '5956', '2017-12-20 10:03:37');
+INSERT INTO `registro_deudas` VALUES ('142', '5', '1', '2017-12-20 10:03:26', '2017-12-26 00:00:00', 'agua', 'Diciembre', '5838', '5838', '2018-03-26 10:14:29');
+INSERT INTO `registro_deudas` VALUES ('143', '5', '2', '2017-12-20 10:03:26', '2017-12-26 00:00:00', 'agua', 'Diciembre', '5838', '5838', '2018-03-26 10:14:44');
+INSERT INTO `registro_deudas` VALUES ('144', '5', '3', '2017-12-20 10:03:26', '2017-12-26 00:00:00', 'agua', 'Diciembre', '5838', '5838', '2018-03-26 10:14:57');
 
 -- ----------------------------
 -- Table structure for user_config
@@ -210,7 +246,7 @@ CREATE TABLE `user_logs_register` (
   `ip` varchar(45) NOT NULL,
   `ip_forward` varchar(45) NOT NULL,
   PRIMARY KEY (`id_register`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of user_logs_register
@@ -273,6 +309,19 @@ INSERT INTO `user_logs_register` VALUES ('55', '5', '165ef61f', '2017-07-28 20:3
 INSERT INTO `user_logs_register` VALUES ('56', '5', '16623de9', '2017-08-07 19:28:38', '::1', '');
 INSERT INTO `user_logs_register` VALUES ('57', '5', '16688420', '2017-08-26 21:21:20', '::1', '');
 INSERT INTO `user_logs_register` VALUES ('58', '5', '166e75f3', '2017-09-13 22:13:50', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('59', '5', '1675e76c', '2017-10-06 12:13:53', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('60', '5', '167bd07c', '2017-10-24 10:36:48', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('61', '5', '167ded46', '2017-10-30 20:26:19', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('62', '5', '167f35e8', '2017-11-03 17:54:57', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('63', '5', '16832fbe', '2017-11-15 19:26:02', '192.168.0.14', '');
+INSERT INTO `user_logs_register` VALUES ('64', '5', '16870f22', '2017-11-27 13:25:47', '192.168.0.9', '');
+INSERT INTO `user_logs_register` VALUES ('65', '5', '16870f64', '2017-11-27 13:30:11', '192.168.0.9', '');
+INSERT INTO `user_logs_register` VALUES ('66', '5', '168758ed', '2017-11-28 10:25:11', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('67', '5', '16887b2b', '2017-12-01 20:58:38', '192.168.0.9', '');
+INSERT INTO `user_logs_register` VALUES ('68', '5', '16887d75', '2017-12-01 21:37:43', '192.168.0.8', '');
+INSERT INTO `user_logs_register` VALUES ('69', '5', '168bf4f7', '2017-12-12 10:04:29', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('70', '5', '168e97cd', '2017-12-20 10:01:40', '::1', '');
+INSERT INTO `user_logs_register` VALUES ('71', '5', '16ae3c68', '2018-03-26 10:12:02', '::1', '');
 
 -- ----------------------------
 -- Table structure for usuarios
