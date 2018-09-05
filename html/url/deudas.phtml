@@ -161,7 +161,7 @@ else{
 								<label>Personas: *</label>
 								<select class="form-control" name="personas[]" id="personas[]" required multiple>
 									<?php
-									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores";
+									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores WHERE enabled='1'";
 									$personas = comandoMySql($sql);
 									for($i=0; $i < count($personas); $i++){
 										echo '<option value="'.$personas[$i][0].'">'.$personas[$i][1];
@@ -206,7 +206,7 @@ else{
 								<label>Persona:</label>
 								<select class="form-control" name="persona" id="persona" required>
 									<?php
-									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores";
+									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores WHERE enabled='1'";
 									$personas = comandoMySql($sql);
 									for($i=0; $i < count($personas); $i++){
 										echo '<option value="'.$personas[$i][0].'">'.$personas[$i][1];
@@ -243,7 +243,7 @@ else{
 								<label>Persona:</label>
 								<select class="form-control" name="persona" id="persona" required>
 									<?php
-									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores";
+									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores WHERE enabled='1'";
 									$personas = comandoMySql($sql);
 									for($i=0; $i < count($personas); $i++){
 										echo '<option value="'.$personas[$i][0].'">'.$personas[$i][1];
