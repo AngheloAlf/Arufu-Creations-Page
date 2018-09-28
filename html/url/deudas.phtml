@@ -148,6 +148,90 @@ else{
 
 					<?php
 				}
+				elseif($_POST["boton"] == "sumarDeudas"){
+					$persona = array(0 => 0);
+					$sql2 = "SELECT motivo, descripcion, fecha_vencimiento, ultimo_abono, monto, monto_abonado, id_deudor FROM registro_deudas WHERE (";
+					$primero = true;
+					foreach($_POST["personas"] as $key => $value){
+						$sql = "SELECT nombre_deudor, rut, id_deudor FROM lista_deudores WHERE id_deudor='{$value}'";
+						if($primero){
+							$sql2 .= "id_deudor='{$value}'";
+							$primero = false;
+						}
+						else{
+							$sql2 .= " OR id_deudor='{$value}'";
+						}
+						$persona[$key] = comandoMySql($sql);
+					}
+
+					$sql2 .= ") AND monto_abonado<monto";
+
+					$datos = comandoMySql($sql2);
+
+					/*print_r($persona);
+					echo "<br>";
+					print_r($datos);*/
+
+					?>
+					<div class="col-md-12">
+						<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 90%;padding: 00px;"';} ?> >
+							<div class="panel-heading">
+								<a data-toggle="collapse" href="#collapseSumaDeudasPersonas">Deudas de <?php for($i=0; $i < count($persona); $i++) { if($i == 0){echo $persona[$i][0][0];} else if($i + 1 == count($persona)) {echo " y ".$persona[$i][0][0]; } else {echo ", ".$persona[$i][0][0];}  } ?></a>
+							</div>
+							<div id="collapseSumaDeudasPersonas" class="panel-collapse in">
+								<div class="panel-body">
+									<table>
+										<th>Deudor</th>
+										<th>Motivo</th>
+										<th>Descripcion</th>
+										<th>Fecha de vencimiento</th>
+										<th>Fecha del ultimo abono</th>
+										<th>Deuda</th>
+										<th>Cantidad abonada</th>
+
+										<?php
+										$deudaSumada = 0;
+										$abonadoSumada = 0;
+
+										foreach($datos as $key => $value){
+											echo "<tr>";
+											echo "<td>";
+											for($i=0; $i < count($persona); $i++){
+												if($persona[$i][0][2] == $value[6]){
+													echo $persona[$i][0][0];
+													break;
+												}
+											}
+											echo "</td>";
+											echo "<td>".$value[0]."</td>";
+											echo "<td>".$value[1]."</td>";
+											echo "<td>".explode(" ", convertirFechaUsuario($value[2]))[0]."</td>";
+											if($value[3]){
+												echo "<td>".convertirFechaUsuario($value[3])."</td>";
+											}
+											else{
+												echo "<td>No hay abono</td>";
+											}
+											echo "<td>".$value[4]."</td>";
+											echo "<td>".$value[5]."</td>";
+											$deudaSumada += $value[4];
+											$abonadoSumada += $value[5];
+											echo "</tr>";
+										}
+										echo "<tr><td>Total</td><td></td><td></td><td></td><td></td><td>".$deudaSumada."</td><td>".$abonadoSumada."</td></tr>";
+										?>
+									</table>
+									<br>
+									<label>Deuda total:</label>
+									<p>$<?php echo $deudaSumada - $abonadoSumada; ?></p>
+								</div>
+							</div>
+						</div>
+						<br>
+					</div>
+
+					<?php
+				}
 			}
 			?>
 			<div class="col-md-6">
@@ -256,6 +340,37 @@ else{
 								</select>
 								<br>
 								<button class="btn btn-primary" id="boton" name="boton" value="verDeudas">Ver deudas</button>
+								<br>
+							</form>
+						</div>
+					</div>
+				</div>
+				<br>
+
+
+				<div class="panel panel-primary" <?php if(!esMobil($uagent_obj)){ echo 'style="margin: auto;width: 90%;padding: 00px;"';} ?> >
+					<div class="panel-heading">
+						<a data-toggle="collapse" href="#collapseSuma">Mostrar suma de deudas</a>
+					</div>
+					<div id="collapseSuma" class="panel-collapse in">
+						<div class="panel-body">
+							<form action="" method="post">
+								<label>Personas: *</label>
+								<select class="form-control" name="personas[]" id="personas[]" required multiple>
+									<?php
+									$sql = "SELECT id_deudor, nombre_deudor, rut FROM lista_deudores WHERE enabled='1'";
+									$personas = comandoMySql($sql);
+									for($i=0; $i < count($personas); $i++){
+										echo '<option value="'.$personas[$i][0].'">'.$personas[$i][1];
+										if($personas[$i][2]){
+											echo ' - '.$personas[$i][2];
+										}
+										echo '</option>';
+									}
+									?>
+								</select>
+								<br>
+								<button class="btn btn-primary" id="boton" name="boton" value="sumarDeudas">Sumar</button>
 								<br>
 							</form>
 						</div>
